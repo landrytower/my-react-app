@@ -15,6 +15,9 @@ If you are developing a production application, we recommend using TypeScript an
 to push on git 
 
 
+cd path/to/my-react-app
+git init
+git remote add origin https://github.com/landrytower/my-react-app.git
 git add .
-git commit -m "test"
-git push
+git commit -m "Update: latest changes"
+git push origin main
