@@ -28,26 +28,36 @@ function Index() {
                 <div className={indexCSS.headerContainer}>
                     <div className={indexCSS.headerContent}>
                         <h5>Hello I m '</h5>
-                        <h1>test </h1>
-                        <p>A Passionate &nbsp;
+                        <h1>Landry</h1>
+                        <p>Your &nbsp;
                             <span>
                                 <ReactTyped
                                     strings={['Web Designer', 'App Designer', 'UI / UX Designer']}
                                     typeSpeed={40}
                                     loop={true}
                                     backSpeed={40}
-                                ></ReactTyped>
-                            </span>
-                        </p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus earum, qui minus fugit fugiat nisi.</p>
-
-                        <div className={indexCSS.social}>
-                            <i className="ri-facebook-line"></i>
-                            <i className="ri-instagram-line"></i>
-                            <i className="ri-twitter-x-line"></i>
-                            <i className="ri-github-line"></i>
-                        </div>
-
+                                    ></ReactTyped>
+                                </span>
+                            </p>
+                            <p>I am an Information Systems student with a focus on full-stack development, cloud technologies, and cybersecurity</p>
+    
+                            <div className={indexCSS.social}>
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+            <i className="ri-facebook-line"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <i className="ri-instagram-line"></i>
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+            <i className="ri-twitter-x-line"></i>
+        </a>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+            <i className="ri-github-line"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/landry-palata-3436a031a/" target="_blank" rel="noopener noreferrer">
+            <i className="ri-linkedin-line"></i>
+        </a>
+    </div>
                         <button>CV <i className="ri-file-list-3-line"></i> </button>
                     </div>
                     <div className={indexCSS.headerImage}>

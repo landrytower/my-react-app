@@ -19,5 +19,5 @@ cd path/to/my-react-app
 git init
 git remote add origin https://github.com/landrytower/my-react-app.git
 git add .
-git commit -m "Update: latest changes"
+git commit -m "Update: latest changes2"
 git push origin main
