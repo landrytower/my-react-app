@@ -1,5 +1,5 @@
 import React from "react";
-import Nav from "../../Compoents/Nav/Nav";
+import Nav from "../../compoent/Nav/Nav";
 
 import indexCSS from './../Index/Index.module.css'
 
@@ -28,7 +28,7 @@ function Index() {
                 <div className={indexCSS.headerContainer}>
                     <div className={indexCSS.headerContent}>
                         <h5>Hello I m '</h5>
-                        <h1>Landry </h1>
+                        <h1>test </h1>
                         <p>A Passionate &nbsp;
                             <span>
                                 <ReactTyped
