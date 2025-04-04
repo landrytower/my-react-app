@@ -1,7 +1,7 @@
 import React from "react";
 import Nav from "../../compoent/Nav/Nav";
 
-import indexCSS from './../Index/Index.module.css'
+import indexCSS from './Index.module.css'
 
 import heroImg from './../../assets/ab.jpeg'
 import aboutimage from './../../assets/ab2.jpeg'
@@ -9,6 +9,8 @@ import aboutimage from './../../assets/ab2.jpeg'
 import frontend from './../../assets/Frontend.png'
 import Backend from './../../assets/Backend.png'
 import UiUxDesign from './../../assets/UiUx.png'
+
+
 
 
 import { LuUtensils } from "react-icons/lu";
