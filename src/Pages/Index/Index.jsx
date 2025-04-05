@@ -3,8 +3,8 @@ import Nav from "../../compoent/Nav/Nav";
 
 import indexCSS from './../Index/Index.module.css'
 
-import heroImg from './../../assets/hero-image.jpg'
-import aboutimage from './../../assets/about-hero.png'
+import heroImg from './../../assets/ab.jpeg'
+import aboutimage from './../../assets/ab2.jpeg'
 
 import frontend from './../../assets/Frontend.png'
 import Backend from './../../assets/Backend.png'
@@ -12,10 +12,10 @@ import UiUxDesign from './../../assets/UiUx.png'
 
 import { ReactTyped } from "react-typed";
 
-import projectImg01 from './../../assets/portfolio-image-01.png'
-import projectImg02 from './../../assets/portfolio-image-02.png'
-import projectImg03 from './../../assets/portfolio-image-03.png'
-import projectImg04 from './../../assets/portfolio-image-04.png'
+import projectImg01 from './../../assets/Dev 1.jpg'
+import projectImg02 from './../../assets/Dev 2.jpg'
+import projectImg03 from './../../assets/APP.jpg'
+import projectImg04 from './../../assets/D3v3.jpg'
 
 function Index() {
     return (
@@ -180,7 +180,7 @@ function Index() {
                         <img src={projectImg01} alt="project-image" />
 
                         <div className={indexCSS.project_content}>
-                            <h3>Mobile App Development</h3>
+                            <h3>Website Development</h3>
                             <p>Coming soon</p>
                             <i className="ri-arrow-right-line"></i>
                         </div>
@@ -198,7 +198,7 @@ function Index() {
                         <img src={projectImg03} alt="project-image" />
 
                         <div className={indexCSS.project_content}>
-                            <h3>Website Development</h3>
+                            <h3>Mobile App Development</h3>
                             <p>Coming soon</p>
                             <i className="ri-arrow-right-line"></i>
                         </div>
