@@ -71,7 +71,7 @@ function Index() {
 
             <section id="about" className={`${indexCSS.about_wrapper}`}>
 
-                <h2 className="SectionTitle">About Us</h2>
+                <h2 className="SectionTitle">About Me</h2>
 
                 <div className={indexCSS.about}>
                     <div className={indexCSS.aboutImage}>
