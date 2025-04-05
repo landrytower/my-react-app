@@ -216,6 +216,18 @@ function Index() {
 
             </section>
 
+
+
+
+
+
+
+
+
+
+
+
+
             <section id="contact" className={indexCSS.contact_wrapper}>
                 <h3 className="SectionTitle">Contact Me</h3>
 
