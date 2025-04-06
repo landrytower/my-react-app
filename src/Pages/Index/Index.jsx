@@ -17,6 +17,8 @@ import projectImg02 from './../../assets/Dev 2.jpg'
 import projectImg03 from './../../assets/APP.jpg'
 import projectImg04 from './../../assets/D3v3.jpg'
 
+
+
 function Index() {
     return (
         <div>
@@ -215,6 +217,17 @@ function Index() {
                 </div>
 
             </section>
+
+
+
+
+
+  
+
+
+
+
+
 
 
 

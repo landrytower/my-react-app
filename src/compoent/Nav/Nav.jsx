@@ -16,7 +16,7 @@ function Nav () {
             </div>
 
             <ul ref={menu}>
-                <li><a href="#Home">Homme</a></li>
+                <li><a href="#Home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#Experience">Experience</a></li>
                 <li><a href="#Projects">Projects</a></li>
