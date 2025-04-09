@@ -19,7 +19,7 @@ body {
   flex-direction: column;
 
   background: linear-gradient(0deg ,
-  rgba(44,2,89,1) 0%,
+  rgb(13, 0, 95) 0%,
   rgba(16,16,16) 100% );
 
   overflow: hidden;
@@ -202,7 +202,7 @@ body {
 
 .about_wrapper {
     background: linear-gradient(180deg ,
-    rgba(44,2,89,1) 0%,
+    rgba(13,0,95) 0%,
     rgba(16,16,16) 100% );
 }
 
@@ -226,7 +226,7 @@ body {
 
     object-fit: cover;
 
-    box-shadow: 10px 10px 0 #8754ff;
+    box-shadow: 10px 10px 0 #000000;
 }
 
 
@@ -310,7 +310,7 @@ body {
 
 .Experience_container {
     background: linear-gradient(0deg ,
-    rgba(44,2,89,1) 0%,
+    rgba(13, 0, 95) 0%,
     rgba(16,16,16) 100% );
 
 }
@@ -477,7 +477,7 @@ body {
 
 .projects_container {
     background: linear-gradient(180deg ,
-    rgba(44,2,89,1) 0%,
+    rgba(13, 0, 95) 0%,
     rgba(16,16,16) 100% );
 }
 
@@ -584,7 +584,7 @@ body {
 
 .contact_wrapper {
     background: linear-gradient(0deg ,
-    rgba(44,2,89,1) 0%,
+    rgba(13, 0, 95) 0%,
     rgba(16,16,16) 100% );
 }
 
@@ -735,7 +735,7 @@ body {
 
 .footer {
     background: linear-gradient(180deg ,
-    rgba(44,2,89,1) 0%,
+    rgba(13, 0, 95) 0%,
     rgba(16,16,16) 100% );
 }
 
@@ -760,7 +760,7 @@ body {
 }
 
 .footerLinks a:hover{
-    color: #8754ff;
+    color: #9266fb;
 }
 
 

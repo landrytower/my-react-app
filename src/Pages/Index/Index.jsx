@@ -87,14 +87,14 @@ function Index() {
                             <img src={frontend} alt="frondend-image"></img>
                             <div className={indexCSS.aboutCardContent}>
                                 <h3>Frontend Developer</h3>
-                                <p>Crafting seamless user experiences with HTML, CSS, and JavaScript where design meets functionality.</p>
+                                <p>Crafting seamless user experiences with HTML, CSS, JavaScript and React where design meets functionality.</p>
                             </div>
                         </div>
                         <div className={indexCSS.aboutCard}>
                             <img src={Backend} alt="frondend-image"></img>
                             <div className={indexCSS.aboutCardContent}>
                                 <h3>Backend Developer</h3>
-                                <p>Building secure and scalable systems with Django and Postgres  powering every click with performance.</p>
+                                <p>Crafting secure, scalable backends with Django, PostgreSQL, and Firebase delivering fast, reliable performance behind every interaction.</p>
                             </div>
                         </div>
                         <div className={indexCSS.aboutCard}>
@@ -245,7 +245,7 @@ function Index() {
 
 
             <section id="contact" className={indexCSS.contact_wrapper}>
-                <h3 className="SectionTitle">Contact Me</h3>
+                <h3 className="SectionTitle">Hire Me</h3>
 
                 <div className={indexCSS.contact}>
                     <div className={indexCSS.contact_form}>
