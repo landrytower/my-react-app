@@ -16,6 +16,9 @@ import projectImg01 from './../../assets/Dev 1.jpg'
 import projectImg02 from './../../assets/Dev 2.jpg'
 import projectImg03 from './../../assets/APP.jpg'
 import projectImg04 from './../../assets/D3v3.jpg'
+import { IoIosRestaurant } from "react-icons/io";
+import { GoDeviceCameraVideo } from "react-icons/go";
+import { SiAltiumdesigner } from "react-icons/si";
 
 
 
@@ -143,14 +146,14 @@ function Index() {
                     </div>
                     <div className={indexCSS.Experience_wrapper}>
                         <div className={indexCSS.Experience_card}>
-                            <h3>Server, Orchid Thai</h3>
+                            <h3>Server, Orchid Thai<IoIosRestaurant /></h3>
                             <p>May 2023 - August 2024 </p>
                             <ul>
                                 <li>-Provided excellent customer service by managing food orders, resolving conflicts and multitasking in a fast-paced environment.</li>
                                </ul>
                         </div>
                         <div className={indexCSS.Experience_card}>
-                            <h3>Videographer, Bluefield State University</h3>
+                            <h3>Videographer, Bluefield State University <GoDeviceCameraVideo /></h3>
                             <p>August 2021 – April 2023 </p>
                             <ul>
                                 <li>
@@ -161,7 +164,7 @@ function Index() {
 
                         </div>
                         <div className={indexCSS.Experience_card}>
-                        <h3>UI Designer, Marietta College </h3>
+                        <h3>UI Designer, Marietta College <SiAltiumdesigner /> </h3>
                         <p>August 2024 - May 2025</p>
                             <ul>
                                 <li>
