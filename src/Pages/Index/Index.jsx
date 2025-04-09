@@ -157,7 +157,7 @@ function Index() {
                             <p>August 2021 – April 2023 </p>
                             <ul>
                                 <li>
-                                    -Designed and developed multiple UI components for Microsoft's flagship product
+                                    -Shot and edited game highlights and promo videos for Bluefield State University athletics, working with the CIAA to showcase events.
                                 </li>
                                 
                             </ul>
