@@ -22,7 +22,7 @@ body {
   flex-direction: column;
 
   background: linear-gradient(0deg ,
-  rgb(13, 0, 95) 0%,
+  rgb(255, 0, 0) 0%,
   rgba(16,16,16) 100% );
 
   overflow: hidden;
