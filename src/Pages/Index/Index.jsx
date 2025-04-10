@@ -16,45 +16,24 @@ import projectImg01 from './../../assets/Dev 1.jpg'
 import projectImg02 from './../../assets/Dev 2.jpg'
 import projectImg03 from './../../assets/APP.jpg'
 import projectImg04 from './../../assets/D3v3.jpg'
-
-
-import img1 from './../../assets/fr.jpeg'
-import img2 from './../../assets/so.jpeg'
-import img3 from './../../assets/jr.jpeg'
-import img4 from './../../assets/sr.jpeg'
-
-import NavigationButtons from './../../components/ui/button'
-
 import { IoIosRestaurant } from "react-icons/io";
 import { GoDeviceCameraVideo } from "react-icons/go";
 import { SiAltiumdesigner } from "react-icons/si";
-import { Card, CardContent } from "../../components/ui/card"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "../../components/ui/carousel"
-
 
 
 
 function Index() {
     return (
         <div>
-           
+            {/* ----------------Header---------------- */}
             <div id="Home" className={indexCSS.headerWrapper}>
 
                 <Nav />
 
-
-                
-
                 <div className={indexCSS.headerContainer}>
                     <div className={indexCSS.headerContent}>
                         <h5>Hello I m '</h5>
-                        <h1>Landry</h1>
+                        <h1>Landryy</h1>
                         <p>Your &nbsp;
                             <span>
                                 <ReactTyped
@@ -115,7 +94,7 @@ function Index() {
                             <img src={Backend} alt="frondend-image"></img>
                             <div className={indexCSS.aboutCardContent}>
                                 <h3>Backend Developer</h3>
-                                <p>Building secure and scalable systems with Django and Postgres and Firebase  powering every click with performance.</p>
+                                <p>Crafting secure, scalable backends with Django, PostgreSQL, and Firebase delivering fast, reliable performance behind every interaction.</p>
                             </div>
                         </div>
                         <div className={indexCSS.aboutCard}>
@@ -236,78 +215,22 @@ function Index() {
                             <h3>Website Development</h3>
                             <p>Coming soon</p>
                             <i className="ri-arrow-right-line"></i>
-
-                            
                         </div>
                     </div>
                 </div>
 
             </section>
 
-            <section className={indexCSS.carousel_section}>
-            <h2 className="SectionTitle">Basketball career</h2>
-            <Carousel className="w-full max-w-5xl mx-auto">
-  <CarouselContent>
-    
-    {[img1, img2, img3, img4].map((img, index) => (
-      <CarouselItem key={index} className="flex justify-center">
-        <Card className="w-full relative overflow-hidden">
-          <CardContent className="p-2 relative aspect-square">
-            <img
-              src={img}
-              alt={`Project ${index + 1}`}
-              className="rounded-xl w-full h-full object-cover"
-            />
-
-            {index === 0 && (
-              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-black/90 text-white px-8 py-5 rounded-2xl shadow-2xl text-center w-[90%]">
-                <p className="text-2xl font-bold mb-2">Freshman Year 6'7</p>
-                <p className="text-lg font-medium">9.8 PPG | 6.2 RPG | 50 BLK</p>
-                <p className="text-lg italic">27 PTS (season high)</p>
-              </div>
-            )}
-
-            {index === 1 && (
-              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-8 py-5 rounded-2xl shadow-2xl text-center w-[90%]">
-                <p className="text-2xl font-bold mb-2">Sophomore Year 6'8</p>
-                <p className="text-lg font-medium">10.0 PPG | 5.4 RPG | 2.4 BPG</p>
-                <p className="text-lg italic">22 PTS (season high)</p>
-              </div>
-            )}
-
-            {index === 2 && (
-              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-8 py-5 rounded-2xl shadow-2xl text-center w-[90%]">
-                <p className="text-2xl font-bold mb-2">Junior Year 6'8</p>
-                <p className="text-lg font-medium">2.5 PPG | 2.6 RPG | 0.7 BPG</p>
-                <p className="text-lg italic">9 PTS (season high)</p>
-              </div>
-            )}
-
-            {index === 3 && (
-              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-8 py-5 rounded-2xl shadow-2xl text-center w-[90%]">
-                <p className="text-2xl font-bold mb-2">Senior Year 6'9</p>
-                <p className="text-lg font-medium">5.3 PPG | 3.7 RPG | 1.3 BPG</p>
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      </CarouselItem>
-    ))}
-  </CarouselContent>
-
-  <CarouselPrevious />
-  <CarouselNext />
-</Carousel>
 
 
-</section>
+
+
+  
 
 
 
 
 
-
-    
 
 
 

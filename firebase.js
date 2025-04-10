@@ -1,15 +1,14 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA85ERPotGYmuQnTnBnMZbodbemQJKDubk",
-  authDomain: "my-react-app-e095e.firebaseapp.com",
-  projectId: "my-react-app-e095e",
-  storageBucket: "my-react-app-e095e.firebasestorage.app",
-  messagingSenderId: "1094362725087",
-  appId: "1:1094362725087:web:1d399e952170efdb2c476a",
-  measurementId: "G-W4TDS0VVN4"
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+export default app;
