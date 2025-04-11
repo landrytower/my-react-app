@@ -21,7 +21,6 @@ import { GoDeviceCameraVideo } from "react-icons/go";
 import { SiAltiumdesigner } from "react-icons/si";
 
 
-import CarouselComponent from '../../compoent/CarouselComponent';
 
 
 function Index() {
@@ -223,11 +222,8 @@ function Index() {
                     </div>
                     
                 </div>
-                <div className={indexCSS.project}>
-  <h2 className="text-3xl font-bold text-white mb-6">Basketball Career</h2>
-  <CarouselComponent />
-</div>
-            </section>
+           
+</section>
 
 
 
