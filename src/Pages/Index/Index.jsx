@@ -35,7 +35,7 @@ function Index() {
                 <div className={indexCSS.headerContainer}>
                     <div className={indexCSS.headerContent}>
                         <h5>Hello I m '</h5>
-                        <h1>Landry</h1>
+                        <h1>Landry.</h1>
                         <p>Your &nbsp;
                             <span>
                                 <ReactTyped
@@ -217,17 +217,17 @@ function Index() {
                             <h3>Website Development</h3>
                             <p>Coming soon</p>
                             <i className="ri-arrow-right-line"></i>
+                            
                         </div>
+                        
                     </div>
+                    
                 </div>
-
-            </section>
-
-
-
- <div className="my-10 px-4">
+                <div className="min-h-screen flex flex-col items-center justify-center px-[50px]">
+  <h2 className="text-3xl font-bold text-white mb-6">Basketball Career</h2>
   <CarouselComponent />
 </div>
+            </section>
 
 
 

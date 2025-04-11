@@ -18,13 +18,13 @@ const CarouselComponent = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 1000,
     arrows: false,
   };
 
   return (
-    <div className="w-full flex justify-center items-center py-10">
-      <div className="w-[90vw] max-w-md"> {/* size control */}
+    <div className="w-full flex justify-center items-center py-10 px-[50px]">
+      <div className="w-full max-w-sm"> {/* slightly smaller than md */}
         <Slider {...settings}>
           {images.map((src, i) => (
             <div key={i}>
