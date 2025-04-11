@@ -588,6 +588,14 @@ body {
     rgba(16,16,16) 100% );
 }
 
+
+.basketball_wrapper {
+    background: linear-gradient(0deg ,
+    rgba(13, 0, 95) 0%,
+    
+    rgba(16,16,16) 100% );
+  }
+  
 .contact {
     width: 70%;
     margin: 0 auto;

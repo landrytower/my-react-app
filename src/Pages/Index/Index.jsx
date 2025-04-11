@@ -19,14 +19,14 @@ import projectImg04 from './../../assets/D3v3.jpg'
 import { IoIosRestaurant } from "react-icons/io";
 import { GoDeviceCameraVideo } from "react-icons/go";
 import { SiAltiumdesigner } from "react-icons/si";
-
+import ImagesSlider from "../../compoent/ImagesSlider/ImageSlider";
 
 
 
 function Index() {
     return (
         <div>
-            {/* ----------------Header---------------- */}
+            
             <div id="Home" className={indexCSS.headerWrapper}>
 
                 <Nav />
@@ -233,7 +233,10 @@ function Index() {
 
 
 
+<section id="basketball" className={indexCSS.basketball_wrapper}>
+<ImagesSlider/>
 
+</section>
 
 
             <section id="contact" className={indexCSS.contact_wrapper}>
