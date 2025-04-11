@@ -33,7 +33,7 @@ function Index() {
                 <div className={indexCSS.headerContainer}>
                     <div className={indexCSS.headerContent}>
                         <h5>Hello I m '</h5>
-                        <h1>Landryy</h1>
+                        <h1>Landry</h1>
                         <p>Your &nbsp;
                             <span>
                                 <ReactTyped
