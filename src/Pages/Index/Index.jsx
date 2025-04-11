@@ -21,6 +21,8 @@ import { GoDeviceCameraVideo } from "react-icons/go";
 import { SiAltiumdesigner } from "react-icons/si";
 
 
+import CarouselComponent from '../../compoent/CarouselComponent';
+
 
 function Index() {
     return (
@@ -63,24 +65,7 @@ function Index() {
             <i className="ri-linkedin-line"></i>
         </a>
     </div>
-    <button
-  onClick={() => {
-    fetch("http://localhost:5000/download-cv")
-      .then(res => res.blob())
-      .then(blob => {
-        const url = window.URL.createObjectURL(new Blob([blob]));
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = "cv.pdf";
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      })
-      .catch(() => alert("Error downloading CV"));
-  }}
->
-  CV <i className="ri-file-list-3-line"></i>
-</button>
+                        <button>CV <i className="ri-file-list-3-line"></i> </button>
                     </div>
                     <div className={indexCSS.headerImage}>
                         <img src={heroImg} alt="hero-image" />
@@ -240,15 +225,9 @@ function Index() {
 
 
 
-
-
-  
-
-
-
-
-
-
+ <div className="my-10 px-4">
+  <CarouselComponent />
+</div>
 
 
 
