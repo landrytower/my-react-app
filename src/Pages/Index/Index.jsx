@@ -63,7 +63,24 @@ function Index() {
             <i className="ri-linkedin-line"></i>
         </a>
     </div>
-                        <button>CV <i className="ri-file-list-3-line"></i> </button>
+    <button
+  onClick={() => {
+    fetch("http://localhost:5000/download-cv")
+      .then(res => res.blob())
+      .then(blob => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = "cv.pdf";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      })
+      .catch(() => alert("Error downloading CV"));
+  }}
+>
+  CV <i className="ri-file-list-3-line"></i>
+</button>
                     </div>
                     <div className={indexCSS.headerImage}>
                         <img src={heroImg} alt="hero-image" />
