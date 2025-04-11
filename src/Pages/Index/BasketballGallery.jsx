@@ -3,11 +3,11 @@ import { motion, useAnimation } from "framer-motion";
 import { useRef, useState } from "react";
 
 const images = [
-  "/img1.jpg",
-  "/img2.jpg",
-  "/img3.jpg",
-  "/img4.jpg",
-  "/img5.jpg",
+  "./../../assets/fr.jpeg",
+  "./../../assets/so.jpeg",
+  "./../../assets/jr.jpeg",
+  "./../../assets/Sr.jpeg",
+  
 ];
 
 export default function SwipeGallery() {
