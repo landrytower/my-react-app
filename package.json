@@ -18,6 +18,7 @@
     "firebase": "^11.6.0",
     "framer-motion": "^12.6.3",
     "gridfs-stream": "^1.1.1",
+    "method-override": "^3.0.0",
     "mongodb": "^6.15.0",
     "mongoose": "^8.13.2",
     "motion": "^12.6.3",
