@@ -223,7 +223,7 @@ function Index() {
                     </div>
                     
                 </div>
-                <div className="min-h-screen flex flex-col items-center justify-center px-[50px]">
+                <div className={indexCSS.project}>
   <h2 className="text-3xl font-bold text-white mb-6">Basketball Career</h2>
   <CarouselComponent />
 </div>
