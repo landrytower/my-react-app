@@ -1,18 +1,17 @@
 import "./ImageSlider.css"
+import { FaArrowAltCircleLeft } from "react-icons/fa";
+<FaArrowAltCircleLeft />
+const image1 = "./../../assets/fr.jpeg";
+const image2 = "./../../assets/so.jpeg";
+const image3 = "./../../assets/jr.jpeg";
 
 
-const image1 = './../../assets/fr.jpeg';
-const image2 = './../../assets/so.jpeg';
-const image3 = './../../assets/jr.jpeg';
-const image4 = './../../assets/Sr.jpeg';
+const imageArray =[image1,image2,image3,];
 
-const imageArray = [image1,image2,image3,image4];
-
-
-function ImagesSlider() {
+function ImageSlider(){
   return (
-    <div className="ImagesSlider">
-      <div className="ImagesSliderContainer">
+    <div className="ImageSlider">
+      <div className="ImageSliderContainer">
         <div className="Images">
           <img src={imageArray[0]} className="rightImage" />
           <img src={imageArray[1]} className="middleImage" />
@@ -20,11 +19,12 @@ function ImagesSlider() {
         </div>
       </div>
       <div className="buttons">
-        <button className="rightButton">right</button>
-        <button className="leftButton">left</button>
+        <button className="rightButton">r<FaArrowAltCircleLeft/> </button>
+        <button className="leftButton">l<FaArrowAltCircleLeft/> </button>
       </div>
     </div>
   );
+  
 }
 
-export default ImagesSlider
+export default ImageSlider
