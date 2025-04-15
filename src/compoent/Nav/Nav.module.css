@@ -12,7 +12,7 @@
 .nav .logo a {
     font-size: 45px;
     font-weight: 800;
-    background: linear-gradient(90deg , var(--primary-color) , #8754ff 50%);
+    background: linear-gradient(90deg , var(--primary-color) , #3441ff 50%);
 
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;

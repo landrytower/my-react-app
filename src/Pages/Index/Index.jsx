@@ -63,10 +63,10 @@ function Index() {
             <p>I am an Information Systems student with a focus on full-stack development, cloud technologies, and cybersecurity</p>
 
             <div className={indexCSS.social}>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><i className="ri-facebook-line"></i></a>
+             {/* <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><i className="ri-facebook-line"></i></a>
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><i className="ri-instagram-line"></i></a>
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><i className="ri-twitter-x-line"></i></a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer"><i className="ri-github-line"></i></a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer"><i className="ri-github-line"></i></a> */}
               <a href="https://www.linkedin.com/in/landry-palata-3436a031a/" target="_blank" rel="noopener noreferrer"><i className="ri-linkedin-line"></i></a>
             </div>
 
@@ -119,14 +119,14 @@ function Index() {
         <div className={indexCSS.Experience}>
           <div className={indexCSS.Skils_wrapper}>
             <h3>My Skils</h3>
-            <p>I have experience working on both the frontend and backend...</p>
+            <p>I’ve worked across both the frontend and backend, using tools like HTML, CSS, JavaScript, React, and Tailwind to build clean, responsive interfaces. On the backend side, I’ve built with Django and worked with databases like PostgreSQL. I'm also comfortable jumping into UI/UX design and editing with Photoshop when needed. I enjoy turning ideas into functional, user-friendly websites that look good and work well.</p>
             <div className={indexCSS.Skils}>
               <div className={indexCSS.Skill}><h4>HTML</h4><div className={`${indexCSS.SkillBar} ${indexCSS.Skill_HTML}`}></div></div>
               <div className={indexCSS.Skill}><h4>CSS3</h4><div className={`${indexCSS.SkillBar} ${indexCSS.Skill_CSS}`}></div></div>
               <div className={indexCSS.Skill}><h4>JavaScript</h4><div className={`${indexCSS.SkillBar} ${indexCSS.Skill_JS}`}></div></div>
               <div className={indexCSS.Skill}><h4>React Js</h4><div className={`${indexCSS.SkillBar} ${indexCSS.Skils_REACTJS}`}></div></div>
-              <div className={indexCSS.Skill}><h4>Tailwind CSS</h4><div className={`${indexCSS.SkillBar} ${indexCSS.Skill_TAILWIND}`}></div></div>
-              <div className={indexCSS.Skill}><h4>Photoshop</h4><div className={`${indexCSS.SkillBar} ${indexCSS.Skill_PHOTOSHOP}`}></div></div>
+              <div className={indexCSS.Skill}><h4>Amazon AWS</h4><div className={`${indexCSS.SkillBar} ${indexCSS.Skill_TAILWIND}`}></div></div>
+              <div className={indexCSS.Skill}><h4>C#</h4><div className={`${indexCSS.SkillBar} ${indexCSS.Skill_PHOTOSHOP}`}></div></div>
             </div>
           </div>
 
@@ -134,27 +134,27 @@ function Index() {
             <div className={indexCSS.Experience_card}>
               <h3>Server, Orchid Thai<IoIosRestaurant /></h3>
               <p>May 2023 - August 2024</p>
-              <ul><li>- Provided excellent customer service by managing food orders...</li></ul>
+              <ul><li>- Delivered a great dining experience by handling orders, answering questions, and keeping things smooth even on busy nights.</li></ul>
             </div>
             <div className={indexCSS.Experience_card}>
               <h3>Videographer, Bluefield State University <GoDeviceCameraVideo /></h3>
               <p>August 2021 – April 2023</p>
-              <ul><li>- Shot and edited game highlights and promo videos...</li></ul>
+              <ul><li>-Shot and edited highlight videos and event promos for the athletics department and CIAA conference.</li></ul>
             </div>
             <div className={indexCSS.Experience_card}>
               <h3>UI Designer, Marietta College <SiAltiumdesigner /></h3>
               <p>August 2024 - May 2025</p>
-              <ul><li>- Developed a responsive web interface for the Washington County Department...</li></ul>
+              <ul><li>-Designed a clean and user-friendly web interface for a Washington County government project as part of a senior capstone.</li></ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* --- PROJECTS --- */}
+     
       <section id="Projects" className={indexCSS.projects_container}>
         <h2 className="SectionTitle">My Projects</h2>
         <div className={indexCSS.projects}>
-          <div className={indexCSS.project}><img src={projectImg01} alt="" /><div className={indexCSS.project_content}><h3>Website Development</h3><p>Coming soon</p></div></div>
+          <div className={indexCSS.project}><img src={projectImg01} alt="" /><div className={indexCSS.project_content}><h3>Website Development</h3><p>Coming soon, CATNETWORK</p></div></div>
           <div className={indexCSS.project}><img src={projectImg02} alt="" /><div className={indexCSS.project_content}><h3>Software Development</h3><p>Coming soon</p></div></div>
           <div className={indexCSS.project}><img src={projectImg03} alt="" /><div className={indexCSS.project_content}><h3>Mobile App Development</h3><p>Coming soon</p></div></div>
           <div className={indexCSS.project}><img src={projectImg04} alt="" /><div className={indexCSS.project_content}><h3>Website Development</h3><p>Coming soon</p></div></div>
@@ -186,10 +186,10 @@ function Index() {
             <div className={indexCSS.info_wrapper}><i className="ri-phone-line"></i><span>+1(205)218-9027</span></div>
             <div className={indexCSS.info_wrapper}><i className="ri-mail-line"></i><span>babulandry4@gmail.com</span></div>
             <div className={indexCSS.social}>
-              <i className="ri-instagram-line"></i>
+             {/* <i className="ri-instagram-line"></i>
               <i className="ri-facebook-line"></i>
               <i className="ri-twitter-x-line"></i>
-              <i className="ri-youtube-line"></i>
+              <i className="ri-youtube-line"></i> */}
             </div>
           </div>
         </div>

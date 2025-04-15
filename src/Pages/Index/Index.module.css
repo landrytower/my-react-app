@@ -43,7 +43,7 @@ body {
 .headerContent h1 {
     font-size: 100px;
     line-height: 100px;
-    background: linear-gradient(90deg , var(--primary-color) , #8754ff 50%);
+    background: linear-gradient(90deg , var(--primary-color) , #3441ff 50%);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
 }
@@ -381,9 +381,9 @@ body {
     left: 0;
     height: 100%;
     width: 50px;
-    background-color: #8754ff;
+    background-color: #89CFF0;
     border-radius: 30px;
-    box-shadow: 0 0 5px rgb(205, 158, 255);
+    box-shadow: 0 0 5px #3441ff(205, 158, 255);
 }
 
 .Experience .Skils_wrapper .Skils .Skill .SkillBar::before{
@@ -427,7 +427,7 @@ body {
 
 .Experience_wrapper .Experience_card{
     background: linear-gradient(90deg ,
-    rgba(44,2,89,1) 0%,
+    #39a1d1 0%,
     transparent);
 
     padding: 30px;
@@ -561,7 +561,7 @@ body {
     justify-content: center;
 
     background-color: #fff;
-    color: #8754ff;
+    color: #89CFF0;
 
     border-radius: 50%;
 
