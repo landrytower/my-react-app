@@ -27,15 +27,18 @@ function Index() {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm('service_autx1sw', 'template_w3npby6', e.target, 'yPzNpFx1k-707cE92')
-      .then((_) => {
-        alert("Message sent!");
-      }, (error) => {
-        alert("Failed to send message.");
-        console.log(error.text);
-      });
-
-    e.target.reset();
+    emailjs.sendForm(
+      'service_fya6y3f', // ✅ Service ID
+      'template_54fw998', // ✅ Template ID
+      e.target,
+      'yPzNpFx1k-707cE92' // ✅ Public Key
+    ).then(() => {
+      alert("✅ Message sent successfully!");
+      e.target.reset();
+    }).catch((error) => {
+      alert("❌ Failed to send message. Check console.");
+      console.error("EmailJS error:", error);
+    });
   };
 
   return (
@@ -77,9 +80,9 @@ function Index() {
         </div>
       </div>
 
+      {/* --- ABOUT --- */}
       <section id="about" className={indexCSS.about_wrapper}>
         <h2 className="SectionTitle">About Me</h2>
-
         <div className={indexCSS.about}>
           <div className={indexCSS.aboutImage}>
             <img src={aboutimage} alt="about" />
@@ -110,14 +113,13 @@ function Index() {
         </div>
       </section>
 
+      {/* --- EXPERIENCE --- */}
       <section id="Experience" className={indexCSS.Experience_container}>
         <h2 className="SectionTitle">My Experience</h2>
-
         <div className={indexCSS.Experience}>
           <div className={indexCSS.Skils_wrapper}>
             <h3>My Skils</h3>
-            <p>I have experience working on both the frontend and backend of web applications, using tools like HTML5, CSS, JavaScript, Django, and Postgres...</p>
-
+            <p>I have experience working on both the frontend and backend...</p>
             <div className={indexCSS.Skils}>
               <div className={indexCSS.Skill}><h4>HTML</h4><div className={`${indexCSS.SkillBar} ${indexCSS.Skill_HTML}`}></div></div>
               <div className={indexCSS.Skill}><h4>CSS3</h4><div className={`${indexCSS.SkillBar} ${indexCSS.Skill_CSS}`}></div></div>
@@ -148,9 +150,9 @@ function Index() {
         </div>
       </section>
 
+      {/* --- PROJECTS --- */}
       <section id="Projects" className={indexCSS.projects_container}>
         <h2 className="SectionTitle">My Projects</h2>
-
         <div className={indexCSS.projects}>
           <div className={indexCSS.project}><img src={projectImg01} alt="" /><div className={indexCSS.project_content}><h3>Website Development</h3><p>Coming soon</p></div></div>
           <div className={indexCSS.project}><img src={projectImg02} alt="" /><div className={indexCSS.project_content}><h3>Software Development</h3><p>Coming soon</p></div></div>
@@ -159,24 +161,21 @@ function Index() {
         </div>
       </section>
 
+      {/* --- CONTACT FORM --- */}
       <section id="contact" className={indexCSS.contact_wrapper}>
         <h3 className="SectionTitle">Hire Me</h3>
-
         <div className={indexCSS.contact}>
           <div className={indexCSS.contact_form}>
             <h4>Send a Message</h4>
-
             <form onSubmit={sendEmail}>
               <div className={indexCSS.input_wrapper}>
                 <input type="text" name="first_name" placeholder="First Name" required />
                 <input type="text" name="last_name" placeholder="Last Name" required />
               </div>
-
               <div className={indexCSS.input_wrapper}>
                 <input type="email" name="email" placeholder="Email" required />
                 <input type="text" name="phone" placeholder="Enter phone" />
               </div>
-
               <textarea name="message" placeholder="Message" required></textarea>
               <button type="submit">Submit</button>
             </form>
@@ -196,6 +195,7 @@ function Index() {
         </div>
       </section>
 
+      {/* --- FOOTER --- */}
       <section className={indexCSS.footer}>
         <div className={indexCSS.footerLinks}>
           <a href="#Home">Home</a>
