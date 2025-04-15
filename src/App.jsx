@@ -1,6 +1,6 @@
 import './App.css'
 import Index from './Pages/Index/Index'
-import ImagesSlider from './compoent/ImagesSlider/ImageSlider'
+
 
 function App() {
 
