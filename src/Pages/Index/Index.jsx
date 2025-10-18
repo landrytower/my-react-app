@@ -118,7 +118,7 @@ function Index() {
         <h2 className="SectionTitle">My Experience</h2>
         <div className={indexCSS.Experience}>
           <div className={indexCSS.Skils_wrapper}>
-            <h3>My Skills</h3>
+            <h3>My Skils</h3>
             <p>I’ve worked across both the frontend and backend, using tools like HTML, CSS, JavaScript, React, and Tailwind to build clean, responsive interfaces. On the backend side, I’ve built with Django and worked with databases like PostgreSQL. I'm also comfortable jumping into UI/UX design and editing with Photoshop when needed. I enjoy turning ideas into functional, user-friendly websites that look good and work well.</p>
             <div className={indexCSS.Skils}>
               <div className={indexCSS.Skill}><h4>HTML</h4><div className={`${indexCSS.SkillBar} ${indexCSS.Skill_HTML}`}></div></div>
