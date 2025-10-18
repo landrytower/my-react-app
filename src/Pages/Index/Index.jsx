@@ -115,7 +115,7 @@ function Index() {
 
       {/* --- EXPERIENCE --- */}
       <section id="Experience" className={indexCSS.Experience_container}>
-        <h2 className="SectionTitle">My Experience</h2>
+        <h2 className="SectionTitle">My Experiencess</h2>
         <div className={indexCSS.Experience}>
           <div className={indexCSS.Skils_wrapper}>
             <h3>My Skills</h3>
