@@ -3,12 +3,13 @@ body {
     overflow-x: hidden;
   }
   
-  .headerContainer {
+.headerContainer {
     display: flex;
     align-items: center;
     padding: 0 12%;
     width: 100%;
-    min-height: 80vh;
+    /* responsive min-height so header scales on phones while keeping a comfortable desktop size */
+    min-height: min(80vh, 520px);
 }
 
 .headerWrapper {
@@ -46,7 +47,301 @@ body {
     background: linear-gradient(90deg , var(--primary-color) , #3441ff 50%);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
+    background-clip: text;
 }
+
+/* Hero refinements */
+.kicker {
+    color: rgba(255,255,255,0.75);
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin: 0 0 6px 0;
+}
+
+.heroName {
+    font-size: 72px;
+    line-height: 0.95;
+    margin: 0 0 12px 0;
+    font-weight: 700;
+}
+
+.heroAccent {
+    color: var(--primary-color);
+    margin-left: 6px;
+}
+
+.lead {
+    font-size: 20px;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 12px;
+}
+
+.roleType {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.description {
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    max-width: 60ch;
+    margin-bottom: 18px;
+}
+
+.ctaGroup {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 6px;
+}
+
+.primaryBtn {
+    background: linear-gradient(90deg, var(--primary-color), #3441ff);
+    color: #111;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.ghostBtn {
+    background: transparent;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.12);
+    text-decoration: none;
+}
+
+@media screen and (max-width:1200px) {
+    .heroName { font-size: 48px; }
+    .headerContent { text-align: center; align-items: center; }
+    .description { max-width: 80ch; }
+}
+
+/* ===== New Hero: bold, glass card + accent blob ===== */
+.heroGrid {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 40px;
+    align-items: center;
+    width: 100%;
+}
+
+.heroLeft {
+    position: relative;
+}
+
+.heroIntro {
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+    padding: 28px 32px;
+    border-radius: 16px;
+    -webkit-backdrop-filter: blur(6px) saturate(120%);
+    backdrop-filter: blur(6px) saturate(120%);
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.heroTitle {
+    font-size: 46px;
+    margin: 6px 0 8px 0;
+    color: #fff;
+}
+
+.heroAccent { color: var(--primary-color); }
+
+.heroTagline {
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.heroPunch { color: rgba(255,255,255,0.75); max-width: 52ch; }
+
+.heroCTAs { margin-top: 18px; display: flex; gap: 12px; justify-content: center; }
+
+.btnPrimary {
+    display: inline-block;
+    padding: 10px 18px;
+    background: linear-gradient(90deg, #ffd166, #ff7b54);
+    color: #111;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.btnOutline {
+    display: inline-block;
+    padding: 10px 16px;
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+.socialVertical {
+    margin-top: 18px;
+    display: flex;
+    gap: 12px;
+}
+
+/* give each social link a shaded circular background */
+.socialVertical a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+    transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.socialVertical a i { color: #fff; font-size: 18px; }
+
+.socialVertical a:hover {
+    transform: translateY(-4px);
+    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    box-shadow: 0 14px 30px rgba(0,0,0,0.55);
+}
+
+.heroRight { display:flex; justify-content:flex-end; }
+
+.heroCard {
+    position: relative;
+    width: 420px;
+    height: 420px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    flex-direction: column; /* stack portrait then badges */
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+
+.accentBlob {
+    position: absolute;
+    right: -60px;
+    top: -40px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle at 30% 30%, rgba(131,58,180,0.9), rgba(58,123,213,0.7));
+    filter: blur(28px);
+    transform: rotate(12deg);
+    z-index: 1;
+}
+
+.portrait {
+    width: 260px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.45);
+    position: relative;
+    z-index: 2;
+}
+
+.skillBadges {
+    /* place naturally below the portrait when heroCard is column layout */
+    position: relative;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap; /* allow wrapping into multiple lines */
+    align-items: center;
+    z-index: 3;
+    justify-content: center; /* center badges under the portrait */
+    max-width: 380px; /* keep badges within the card */
+    padding: 6px 10px 0 10px;
+    margin-top: 12px; /* spacing below portrait */
+    gap: 6px;
+    /* allow up to two rows naturally */
+    max-height: none;
+}
+
+/* loading bar behind badges (initially zero width, then fills) */
+.skillBadges::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 8px;
+    width: 0%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(255,215,102,0.95), rgba(255,123,84,0.9));
+    /* slower fill */
+    transition: width 2200ms cubic-bezier(.2,.8,.2,1);
+    z-index: 1; /* behind badges (badges have z-index 3) */
+}
+
+.skillBadges.revealed::before,
+.skillBadges[data-revealed='true']::before {
+    width: 100%;
+}
+
+.badge {
+    background: rgba(0,0,0,0.35);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+/* initial state: badges translated left and slightly lowered, invisible */
+.skillBadges .badge {
+    transform: translateX(-18px) translateY(8px) scale(0.98);
+    opacity: 0;
+    /* slower badge animation */
+    transition: transform 1200ms cubic-bezier(.2,.8,.2,1), opacity 1200ms ease;
+    position: relative; /* sit above the loading bar */
+    z-index: 3;
+}
+
+/* when container gets .revealed, animate badges with staggered delays left->right */
+.revealed .badge { opacity: 1; transform: translateX(0) translateY(0) scale(1); }
+/* start badges after the loading bar finishes (base delay 220ms) */
+.revealed .badge1,
+.skillBadges[data-revealed='true'] .badge1 { transition-delay: 2200ms; }
+.revealed .badge2,
+.skillBadges[data-revealed='true'] .badge2 { transition-delay: 2350ms; }
+.revealed .badge3,
+.skillBadges[data-revealed='true'] .badge3 { transition-delay: 2500ms; }
+.revealed .badge4,
+.skillBadges[data-revealed='true'] .badge4 { transition-delay: 2650ms; }
+.revealed .badge5,
+.skillBadges[data-revealed='true'] .badge5 { transition-delay: 2800ms; }
+.revealed .badge6,
+.skillBadges[data-revealed='true'] .badge6 { transition-delay: 2950ms; }
+.revealed .badge7,
+.skillBadges[data-revealed='true'] .badge7 { transition-delay: 3100ms; }
+.revealed .badge8,
+.skillBadges[data-revealed='true'] .badge8 { transition-delay: 3250ms; }
+
+/* small screens: make smaller badges and tighter spacing */
+@media screen and (max-width:600px) {
+    .skillBadges { gap:6px; bottom:12px; left:12px; right:12px; }
+    .badge { padding:5px 8px; font-size:11px; }
+}
+
+@media screen and (max-width:1100px) {
+    .heroGrid { grid-template-columns: 1fr; }
+    .heroRight { justify-content:center; margin-top: 28px; }
+    .heroCard { width: 320px; height: 320px; }
+    .portrait { width: 220px; height: 220px; }
+}
+
+@media screen and (max-width:600px) {
+    .heroIntro { padding: 20px; }
+    .heroTitle { font-size: 32px; }
+    .heroPunch { max-width: 100%; }
+    .heroCard { width: 260px; height: 260px; }
+    .portrait { width: 180px; height: 180px; }
+}
+
 
 .headerContent p {
     color: #fff;
@@ -373,17 +668,20 @@ body {
     position: relative;
 }
 
-.Experience .Skils_wrapper .Skils .Skill .SkillBar::after , 
-.Experience .Skils_wrapper .Skils .Skill .SkillBar::before  {
+.Experience .Skils_wrapper .Skils .Skill .SkillBar::after ,
+.Experience .Skils_wrapper .Skils .Skill .SkillBar::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
-    width: 50px;
+    width: 100%;
     background-color: #89CFF0;
     border-radius: 30px;
-    box-shadow: 0 0 5px #3441ff(205, 158, 255);
+    transform-origin: left center;
+    transform: scaleX(0);
+    /* slower fill (3x) */
+    transition: transform 2700ms cubic-bezier(.2,.8,.2,1);
 }
 
 .Experience .Skils_wrapper .Skils .Skill .SkillBar::before{
@@ -397,26 +695,27 @@ body {
     background-color: transparent;
 }
 
-.Skill_HTML::after {
-    width: 60% !important;
+/* numeric percentage inside the bar */
+.SkillPercent {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    /* match the CTA start color (bright yellow) for visibility */
+    color: #ffd166;
+    font-weight: 700;
+    z-index: 6;
 }
 
-.Skill_CSS::after {
-    width: 75% !important;
-}
+/* per-skill targets handled in the revealed state below */
 
-.Skill_JS::after {
-    width: 58% !important;
-}
-.Skils_REACTJS::after {
-    width: 50% !important;
-}
-.Skill_TAILWIND::after {
-    width: 65% !important;
-}
-.Skill_PHOTOSHOP::after {
-    width: 75% !important;
-}
+/* when the skills container gets revealed, animate each bar to its target scale (percentage) */
+.Skils[data-revealed='true'] .Skill .SkillBar.Skill_HTML::after { transform: scaleX(0.60); transition-delay: 40ms; }
+.Skils[data-revealed='true'] .Skill .SkillBar.Skill_CSS::after { transform: scaleX(0.75); transition-delay: 120ms; }
+.Skils[data-revealed='true'] .Skill .SkillBar.Skill_JS::after { transform: scaleX(0.58); transition-delay: 200ms; }
+.Skils[data-revealed='true'] .Skill .SkillBar.Skils_REACTJS::after { transform: scaleX(0.50); transition-delay: 280ms; }
+.Skils[data-revealed='true'] .Skill .SkillBar.Skill_TAILWIND::after { transform: scaleX(0.65); transition-delay: 360ms; }
+.Skils[data-revealed='true'] .Skill .SkillBar.Skill_PHOTOSHOP::after { transform: scaleX(0.75); transition-delay: 440ms; }
 
 .Experience_wrapper {
     width: 50%;
@@ -788,5 +1087,122 @@ body {
 @media screen and (max-width:500px) {
     .footerLinks a{ 
         padding-left: 10px;
+    }
+}
+
+/* ----------------------------- */
+/* Modern layout - size overrides */
+/* ----------------------------- */
+
+/* Constrain hero image and animation (overrides previous large fixed sizes) */
+.heroSection .heroImageWrapper,
+.headerImage,
+.headerImage img,
+.heroImageWrapper img,
+.heroImage img {
+    width: 100%;
+    height: auto;
+    max-width: 360px; /* smaller hero image */
+    max-height: 360px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.borderAnimation {
+    /* reduce the animated ring size to match hero image */
+    height: 370px !important;
+    width: 370px !important;
+}
+
+/* Floating cards around hero - keep them small */
+.floatingCard {
+    min-width: 110px;
+    max-width: 140px;
+    padding: 8px 10px;
+    font-size: 13px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* About image and main card */
+.aboutSection .aboutImageWrapper img,
+.about .aboutImage img,
+.aboutImageWrapper img {
+    width: 100%;
+    height: auto;
+    max-width: 420px;
+    max-height: 420px;
+    object-fit: cover;
+    box-shadow: 8px 8px 0 #000000;
+}
+
+/* Project cards - limit preview image height so grid doesn't become too tall */
+.projectsSection .projectImageWrapper img,
+.projects .project img,
+.projectImageWrapper img {
+    width: 100%;
+    height: auto;
+    max-height: 260px;
+    object-fit: cover;
+}
+
+/* Contact card icons - keep compact */
+.contactCardIcon i,
+.contactCardIcon {
+    font-size: 18px;
+    height: 44px;
+    width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Responsive reductions */
+@media screen and (max-width:900px) {
+    .heroSection .heroImageWrapper,
+    .heroImageWrapper img,
+    .headerImage img {
+        max-width: 280px;
+        max-height: 280px;
+    }
+
+    .aboutSection .aboutImageWrapper img,
+    .about .aboutImage img {
+        max-width: 320px;
+        max-height: 320px;
+    }
+
+    .projectsSection .projectImageWrapper img,
+    .projects .project img {
+        max-height: 200px;
+    }
+
+    .floatingCard {
+        min-width: 90px;
+        max-width: 110px;
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .heroSection .heroImageWrapper,
+    .heroImageWrapper img,
+    .headerImage img {
+        max-width: 220px;
+        max-height: 220px;
+    }
+
+    .aboutSection .aboutImageWrapper img,
+    .about .aboutImage img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .projectsSection .projectImageWrapper img,
+    .projects .project img {
+        max-height: 160px;
     }
 }

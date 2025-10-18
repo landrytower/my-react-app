@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Nav from "../../compoent/Nav/Nav";
 import indexCSS from './../Index/Index.module.css';
 
@@ -9,7 +9,6 @@ import frontend from './../../assets/Frontend.png';
 import Backend from './../../assets/Backend.png';
 import UiUxDesign from './../../assets/UiUx.png';
 
-import { ReactTyped } from "react-typed";
 
 import projectImg01 from './../../assets/Dev 1.jpg';
 import projectImg02 from './../../assets/Dev 2.jpg';
@@ -41,41 +40,120 @@ function Index() {
     });
   };
 
+  // animate skill badges when they scroll into view
+  const badgesRef = useRef(null);
+  useEffect(() => {
+    const el = badgesRef.current;
+    if (!el) return;
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // reveal when entering
+          el.classList.add(indexCSS.revealed);
+          el.setAttribute('data-revealed', 'true');
+        } else {
+          // hide when leaving so animation can replay next time
+          el.classList.remove(indexCSS.revealed);
+          el.setAttribute('data-revealed', 'false');
+        }
+      });
+    }, { threshold: 0.25 });
+
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  // animate skill progress bars when they scroll into view
+  const skillsRef = useRef(null);
+  useEffect(() => {
+    const el = skillsRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          el.setAttribute('data-revealed', 'true');
+          // animate numeric percentages for each bar
+          const bars = el.querySelectorAll(`.${indexCSS.SkillBar}`);
+          bars.forEach(bar => {
+            const target = parseInt(bar.getAttribute('data-target') || '0', 10);
+            const percentEl = bar.querySelector(`.${indexCSS.SkillPercent}`);
+            if (!percentEl) return;
+
+            // duration should match the CSS transition (900ms) scaled by 3x slower we've set earlier
+            const duration = 900 * 3; // 2700ms
+            const start = performance.now();
+
+            const frame = (now) => {
+              const t = Math.min(1, (now - start) / duration);
+              const value = Math.round(t * target);
+              percentEl.textContent = `${value}%`;
+              if (t < 1) requestAnimationFrame(frame);
+            };
+            requestAnimationFrame(frame);
+          });
+        } else {
+          el.setAttribute('data-revealed', 'false');
+          // reset numeric displays to 0 when leaving
+          const bars = el.querySelectorAll(`.${indexCSS.SkillBar}`);
+          bars.forEach(bar => {
+            const percentEl = bar.querySelector(`.${indexCSS.SkillPercent}`);
+            if (percentEl) percentEl.textContent = `0%`;
+          });
+        }
+      });
+    }, { threshold: 0.25 });
+
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <div>
       <div id="Home" className={indexCSS.headerWrapper}>
         <Nav />
 
         <div className={indexCSS.headerContainer}>
-          <div className={indexCSS.headerContent}>
-            <h5>Hello I m '</h5>
-            <h1>Landry</h1>
-            <p>Your &nbsp;
-              <span>
-                <ReactTyped
-                  strings={['Web Designer', 'App Designer', 'UI / UX Designer']}
-                  typeSpeed={80}
-                  loop={true}
-                  backSpeed={80}
-                />
-              </span>
-            </p>
-            <p>I am an Information Systems student with a focus on full-stack development, cloud technologies, and cybersecurity</p>
+          <div className={indexCSS.heroGrid}>
+            <div className={indexCSS.heroLeft}>
+              <div className={indexCSS.heroIntro}>
+                <div className={indexCSS.kicker}>Hey I'm</div>
+                <h1 className={indexCSS.heroTitle}>Landry <span className={indexCSS.heroAccent}>Palata</span></h1>
+                <p className={indexCSS.heroTagline}><strong>UI/UX Designer</strong> &amp; <strong>Cloud Architect</strong></p>
 
-            <div className={indexCSS.social}>
-             {/* <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><i className="ri-facebook-line"></i></a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><i className="ri-instagram-line"></i></a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><i className="ri-twitter-x-line"></i></a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer"><i className="ri-github-line"></i></a> */}
-              <a href="https://www.linkedin.com/in/landry-palata-3436a031a/" target="_blank" rel="noopener noreferrer"><i className="ri-linkedin-line"></i></a>
+                <p className={indexCSS.heroPunch}>
+                  I design thoughtful user experiences and build resilient cloud platforms. I split my time between prototyping and testing interfaces that people love, and architecting backend systems that scale from API design and S3 backed storage to automated CI/CD pipelines.
+                  I instrument and monitor systems with Datadog.
+                </p>
+
+                <div className={indexCSS.heroCTAs}>
+                  <a href="#Projects" className={indexCSS.btnPrimary}>See my work</a>
+                </div>
+              </div>
+
+              <div className={indexCSS.socialVertical}>
+                <a href="https://www.linkedin.com/in/landry-palata-3436a031a/" target="_blank" rel="noopener noreferrer"><i className="ri-linkedin-line"></i></a>
+                <a href="https://www.instagram.com/landry_palata/" target="_blank" rel="noopener noreferrer"><i className="ri-instagram-line"></i></a>
+              </div>
             </div>
 
-            <button>CV <i className="ri-file-list-3-line"></i> </button>
-          </div>
+            <div className={indexCSS.heroRight}>
+              <div className={indexCSS.heroCard}>
+                <div className={indexCSS.accentBlob}></div>
+                <img src={heroImg} alt="Landry portrait" className={indexCSS.portrait} />
 
-          <div className={indexCSS.headerImage}>
-            <img src={heroImg} alt="hero" />
-            <div className={indexCSS.borderAnimation}></div>
+                <div ref={badgesRef} className={indexCSS.skillBadges}>
+                  <span className={`${indexCSS.badge} ${indexCSS.badge1}`}>React</span>
+                  <span className={`${indexCSS.badge} ${indexCSS.badge2}`}>Angular</span>
+                  <span className={`${indexCSS.badge} ${indexCSS.badge3}`}>Html</span>
+                  <span className={`${indexCSS.badge} ${indexCSS.badge4}`}>Node</span>
+                  <span className={`${indexCSS.badge} ${indexCSS.badge5}`}>Javascript</span>
+                  <span className={`${indexCSS.badge} ${indexCSS.badge6}`}>DataDog</span>
+                  <span className={`${indexCSS.badge} ${indexCSS.badge7}`}>AWS</span>
+                  <span className={`${indexCSS.badge} ${indexCSS.badge8}`}>Grafana</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -115,26 +193,67 @@ function Index() {
 
       {/* --- EXPERIENCE --- */}
       <section id="Experience" className={indexCSS.Experience_container}>
-        <h2 className="SectionTitle">My Experience</h2>
+        <h2 className="SectionTitle">My Experiencess</h2>
         <div className={indexCSS.Experience}>
           <div className={indexCSS.Skils_wrapper}>
             <h3>My Skils</h3>
             <p>I’ve worked across both the frontend and backend, using tools like HTML, CSS, JavaScript, React, and Tailwind to build clean, responsive interfaces. On the backend side, I’ve built with Django and worked with databases like PostgreSQL. I'm also comfortable jumping into UI/UX design and editing with Photoshop when needed. I enjoy turning ideas into functional, user-friendly websites that look good and work well.</p>
-            <div className={indexCSS.Skils}>
-              <div className={indexCSS.Skill}><h4>HTML</h4><div className={`${indexCSS.SkillBar} ${indexCSS.Skill_HTML}`}></div></div>
-              <div className={indexCSS.Skill}><h4>CSS3</h4><div className={`${indexCSS.SkillBar} ${indexCSS.Skill_CSS}`}></div></div>
-              <div className={indexCSS.Skill}><h4>JavaScript</h4><div className={`${indexCSS.SkillBar} ${indexCSS.Skill_JS}`}></div></div>
-              <div className={indexCSS.Skill}><h4>React Js</h4><div className={`${indexCSS.SkillBar} ${indexCSS.Skils_REACTJS}`}></div></div>
-              <div className={indexCSS.Skill}><h4>Amazon AWS</h4><div className={`${indexCSS.SkillBar} ${indexCSS.Skill_TAILWIND}`}></div></div>
-              <div className={indexCSS.Skill}><h4>C#</h4><div className={`${indexCSS.SkillBar} ${indexCSS.Skill_PHOTOSHOP}`}></div></div>
+            <div ref={skillsRef} className={indexCSS.Skils}>
+              <div className={indexCSS.Skill}>
+                <h4>HTML</h4>
+                <div className={`${indexCSS.SkillBar} ${indexCSS.Skill_HTML}`} data-target="60">
+                  <span className={indexCSS.SkillPercent}>0%</span>
+                </div>
+              </div>
+
+              <div className={indexCSS.Skill}>
+                <h4>Angular</h4>
+                <div className={`${indexCSS.SkillBar} ${indexCSS.Skill_CSS}`} data-target="75">
+                  <span className={indexCSS.SkillPercent}>0%</span>
+                </div>
+              </div>
+
+              <div className={indexCSS.Skill}>
+                <h4>JavaScript</h4>
+                <div className={`${indexCSS.SkillBar} ${indexCSS.Skill_JS}`} data-target="58">
+                  <span className={indexCSS.SkillPercent}>0%</span>
+                </div>
+              </div>
+
+              <div className={indexCSS.Skill}>
+                <h4>React Js</h4>
+                <div className={`${indexCSS.SkillBar} ${indexCSS.Skils_REACTJS}`} data-target="50">
+                  <span className={indexCSS.SkillPercent}>0%</span>
+                </div>
+              </div>
+
+              <div className={indexCSS.Skill}>
+                <h4>Amazon AWS</h4>
+                <div className={`${indexCSS.SkillBar} ${indexCSS.Skill_TAILWIND}`} data-target="65">
+                  <span className={indexCSS.SkillPercent}>0%</span>
+                </div>
+              </div>
+
+              <div className={indexCSS.Skill}>
+                <h4>DataDog</h4>
+                <div className={`${indexCSS.SkillBar} ${indexCSS.Skill_PHOTOSHOP}`} data-target="75">
+                  <span className={indexCSS.SkillPercent}>0%</span>
+                </div>
+              </div>
             </div>
           </div>
 
           <div className={indexCSS.Experience_wrapper}>
             <div className={indexCSS.Experience_card}>
-              <h3>Server, Orchid Thai<IoIosRestaurant /></h3>
-              <p>May 2023 - August 2024</p>
-              <ul><li>- Delivered a great dining experience by handling orders, answering questions, and keeping things smooth even on busy nights.</li></ul>
+              <h3>Junior Cloud Engineer, CentralSquare Technologies</h3>
+              <p>August 2025 - Present</p>
+              <ul>
+                <li>- Designing secure, scalable RESTful APIs for VPN workflows.</li>
+                <li>- Architecting cloud storage using Amazon S3, schema less and relational databases.</li>
+                <li>- Building portal features like user access controls and role based permissions.</li>
+                <li>- Developing with Visual Studio Code and ASP.NET, integrating CI/CD pipelines and unit testing frameworks.</li>
+              </ul>
+              <p><strong>Skills:</strong> ASP.NET · Amazon S3 · Microsoft Visual Studio Code</p>
             </div>
             <div className={indexCSS.Experience_card}>
               <h3>Videographer, Bluefield State University <GoDeviceCameraVideo /></h3>
@@ -163,7 +282,7 @@ function Index() {
 
       {/* --- CONTACT FORM --- */}
       <section id="contact" className={indexCSS.contact_wrapper}>
-        <h3 className="SectionTitle">Hire Me</h3>
+        <h3 className="SectionTitle">Contact Me</h3>
         <div className={indexCSS.contact}>
           <div className={indexCSS.contact_form}>
             <h4>Send a Message</h4>
@@ -211,3 +330,4 @@ function Index() {
 }
 
 export default Index;
+
