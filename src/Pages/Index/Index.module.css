@@ -179,9 +179,16 @@ body {
 }
 
 .socialVertical {
-    margin-top: 18px;
+    /* place the social icons directly under the header container in the normal flow
+       instead of fixed to the viewport. Center them horizontally and display
+       as a small horizontal group by default. */
+    position: relative;
+    transform: none;
     display: flex;
+    flex-direction: row; /* show icons in a row under the header */
     gap: 12px;
+    margin: 18px auto 0; /* spacing under headerContainer and centered */
+    z-index: 2;
 }
 
 /* give each social link a shaded circular background */
@@ -194,15 +201,25 @@ body {
     border-radius: 50%;
     background: rgba(255,255,255,0.04);
     box-shadow: 0 8px 20px rgba(0,0,0,0.45);
-    transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+    transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease, color 180ms ease;
 }
 
-.socialVertical a i { color: #fff; font-size: 18px; }
+.socialVertical a i { color: #fff; font-size: 18px; transition: color 180ms ease; }
 
-.socialVertical a:hover {
+/* hover / focus: orange glow and contrasting icon color for "light up orange" effect */
+.socialVertical a:hover,
+.socialVertical a:focus,
+.socialVertical a:focus-visible {
     transform: translateY(-4px);
-    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-    box-shadow: 0 14px 30px rgba(0,0,0,0.55);
+    background: linear-gradient(180deg, #ffd6b3, #ff7b54); /* warm orange gradient */
+    box-shadow: 0 14px 40px rgba(255,123,84,0.22), 0 4px 10px rgba(255,180,120,0.12);
+    outline: none;
+}
+
+.socialVertical a:hover i,
+.socialVertical a:focus i,
+.socialVertical a:focus-visible i {
+    color: #111; /* dark icon for contrast against orange */
 }
 
 .heroRight { display:flex; justify-content:flex-end; }
@@ -327,6 +344,15 @@ body {
     .badge { padding:5px 8px; font-size:11px; }
 }
 
+    /* on smaller screens, stack social icons normally under the intro */
+    @media screen and (max-width:600px) {
+        .socialVertical {
+            position: static;
+            transform: none;
+            margin-top: 18px;
+            flex-direction: row; /* restore horizontal flow if desired on very small screens */
+        }
+    }
 @media screen and (max-width:1100px) {
     .heroGrid { grid-template-columns: 1fr; }
     .heroRight { justify-content:center; margin-top: 28px; }
@@ -1087,6 +1113,62 @@ body {
 @media screen and (max-width:500px) {
     .footerLinks a{ 
         padding-left: 10px;
+    }
+}
+
+/* Mobile footer: stack links, reduce spacing and font-size so footer fits on phones */
+@media screen and (max-width:600px) {
+    .footer {
+        padding: 20px 12px; /* give some vertical breathing room but smaller */
+    }
+
+    .footerLinks {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footerLinks a {
+        font-size: 14px;
+        padding-left: 0;
+        border-left: none;
+    }
+
+    .footer p {
+        margin-top: 18px;
+        font-size: 13px;
+    }
+}
+
+/* Footer collapse toggle - visible on very small screens */
+@media screen and (max-width:420px) {
+    .footerToggle {
+        display: inline-block;
+        margin: 0 auto 8px;
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(255,255,255,0.12);
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 14px;
+        cursor: pointer;
+        display: block;
+        text-align: center;
+    }
+
+    /* default: collapsed - hide the links until toggled */
+    .footerLinks.collapsed {
+        display: none;
+    }
+
+    /* when expanded, show links stacked */
+    .footerLinks.expanded {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+        margin-top: 6px;
     }
 }
 

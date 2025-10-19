@@ -108,6 +108,8 @@ function Index() {
     return () => obs.disconnect();
   }, []);
 
+  // footer collapse state removed (toggle button removed)
+
   return (
     <div>
       <div id="Home" className={indexCSS.headerWrapper}>
@@ -130,11 +132,6 @@ function Index() {
                   <a href="#Projects" className={indexCSS.btnPrimary}>See my work</a>
                 </div>
               </div>
-
-              <div className={indexCSS.socialVertical}>
-                <a href="https://www.linkedin.com/in/landry-palata-3436a031a/" target="_blank" rel="noopener noreferrer"><i className="ri-linkedin-line"></i></a>
-                <a href="https://www.instagram.com/landry_palata/" target="_blank" rel="noopener noreferrer"><i className="ri-instagram-line"></i></a>
-              </div>
             </div>
 
             <div className={indexCSS.heroRight}>
@@ -156,6 +153,13 @@ function Index() {
             </div>
           </div>
         </div>
+
+        {/* social icons placed directly under headerContainer */}
+        <div className={indexCSS.socialVertical}>
+          <a href="https://www.linkedin.com/in/landry-palata-3436a031a/" target="_blank" rel="noopener noreferrer"><i className="ri-linkedin-line"></i></a>
+          <a href="https://www.instagram.com/landry_palata/" target="_blank" rel="noopener noreferrer"><i className="ri-instagram-line"></i></a>
+        </div>
+
       </div>
 
       {/* --- ABOUT --- */}
@@ -316,13 +320,15 @@ function Index() {
 
       {/* --- FOOTER --- */}
       <section className={indexCSS.footer}>
-        <div className={indexCSS.footerLinks}>
+
+        <div id="footer-links" className={indexCSS.footerLinks}>
           <a href="#Home">Home</a>
           <a href="#about">About</a>
           <a href="#Experience">Experience</a>
           <a href="#Projects">Projects</a>
           <a href="#contact">Contact</a>
         </div>
+
         <p>@copyright 2025 all rights reserved</p>
       </section>
     </div>
