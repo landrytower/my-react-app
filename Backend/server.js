@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const multer = require('multer');
-const { GridFSBucket } = require('mongodb');
+const { GridFsStorage } = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -16,37 +17,38 @@ const conn = mongoose.createConnection(mongoURI, {
   useUnifiedTopology: true,
 });
 
-let gfsBucket;
+let gfs;
 conn.once('open', () => {
-  gfsBucket = new GridFSBucket(conn.db, { bucketName: 'uploads' });
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection('uploads');
 });
 
-// multer v2: use memory storage and stream to GridFSBucket
-const storage = multer.memoryStorage();
+const storage = new GridFsStorage({
+  url: mongoURI,
+  file: () => {
+    return {
+      filename: 'cv.pdf',
+      bucketName: 'uploads',
+    };
+  },
+});
+
 const upload = multer({ storage });
 
 // Upload endpoint (optional, only use once to upload your CV)
 app.post('/upload', upload.single('file'), (req, res) => {
-  if (!req.file || !gfsBucket) return res.status(500).send('No file or storage not ready');
-
-  const uploadStream = gfsBucket.openUploadStream('cv.pdf', {
-    contentType: req.file.mimetype,
-  });
-  uploadStream.end(req.file.buffer, (err, file) => {
-    if (err) return res.status(500).send('Upload failed');
-    res.send('File uploaded');
-  });
+  res.send('File uploaded');
 });
 
 // Download endpoint
 app.get('/download-cv', (req, res) => {
-  const filter = { filename: 'cv.pdf' };
-  conn.db.collection('uploads.files').findOne(filter, (err, file) => {
-    if (err || !file) return res.status(404).send('File not found');
-    const downloadStream = gfsBucket.openDownloadStreamByName(file.filename);
-    res.set('Content-Type', file.contentType || 'application/octet-stream');
+  gfs.files.findOne({ filename: 'cv.pdf' }, (err, file) => {
+    if (!file) return res.status(404).send('File not found');
+
+    const readstream = gfs.createReadStream(file.filename);
+    res.set('Content-Type', file.contentType);
     res.set('Content-Disposition', 'attachment; filename="cv.pdf"');
-    downloadStream.pipe(res);
+    readstream.pipe(res);
   });
 });
 
