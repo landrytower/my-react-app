@@ -1,9 +1,20 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import navCSS from './Nav.module.css'
 
 
 function Nav () {
     const menu = useRef();
+    const [scrolled, setScrolled] = useState(false);
+    const [activeLink, setActiveLink] = useState('Home');
+
+    // Handle scroll effect
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const menuhandler = () => {
         if (!menu.current) return;
@@ -14,7 +25,9 @@ function Nav () {
     }
 
     // Close drawer with right->left animation when a link is clicked.
-    const handleLinkClick = (e) => {
+    const handleLinkClick = (e, linkName) => {
+        setActiveLink(linkName);
+        
         // Only intercept on small screens where the drawer is used
         if (window.innerWidth > 900) return;
 
@@ -45,21 +58,42 @@ function Nav () {
     }
 
     return (
-        <div className={navCSS.nav}>
+        <div className={`${navCSS.nav} ${scrolled ? navCSS.scrolled : ''}`}>
+            {/* Animated background elements */}
+            <div className={navCSS.navGlow}></div>
+            <div className={navCSS.navLine}></div>
+            
             <div className={navCSS.logo}>
-                
+                <a href="#Home">
+                    <span className={navCSS.logoText}>LP</span>
+                    <span className={navCSS.logoDot}></span>
+                </a>
             </div>
 
-            <ul ref={menu}>
-                <li><a href="#Home" onClick={handleLinkClick}>Home</a></li>
-                <li><a href="#about" onClick={handleLinkClick}>About</a></li>
-                <li><a href="#Experience" onClick={handleLinkClick}>Experience</a></li>
-                <li><a href="#Projects" onClick={handleLinkClick}>Projects</a></li>
-                <li><a href="#contact" onClick={handleLinkClick}>Contact</a></li>
+            <ul ref={menu} className={navCSS.navLinks}>
+                {['Home', 'about', 'Experience', 'Projects', 'contact'].map((item, index) => (
+                    <li key={item} style={{ '--i': index }}>
+                        <a 
+                            href={`#${item}`} 
+                            onClick={(e) => handleLinkClick(e, item)}
+                            className={activeLink === item ? navCSS.active : ''}
+                        >
+                            <span className={navCSS.linkText}>{item === 'about' ? 'About' : item}</span>
+                            <span className={navCSS.linkGlow}></span>
+                            <span className={navCSS.linkLine}></span>
+                        </a>
+                    </li>
+                ))}
+                {/* Floating indicator */}
+                <div className={navCSS.navIndicator}></div>
             </ul>
 
-            <i className="ri-menu-4-line" id={navCSS.bars} onClick={menuhandler}></i>
-
+            {/* Futuristic hamburger */}
+            <div className={navCSS.hamburger} onClick={menuhandler}>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     )
 }

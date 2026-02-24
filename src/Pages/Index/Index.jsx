@@ -9,11 +9,8 @@ import frontend from './../../assets/Frontend.png';
 import Backend from './../../assets/Backend.png';
 import UiUxDesign from './../../assets/UiUx.png';
 
-
-import projectImg01 from './../../assets/Dev 1.jpg';
 import projectImg02 from './../../assets/Dev 2.jpg';
 import projectImg03 from './../../assets/APP.jpg';
-import projectImg04 from './../../assets/D3v3.jpg';
 
 import { IoIosRestaurant } from "react-icons/io";
 import { GoDeviceCameraVideo } from "react-icons/go";
@@ -66,43 +63,63 @@ function Index() {
 
   // animate skill progress bars when they scroll into view
   const skillsRef = useRef(null);
+  const hasAnimatedRef = useRef(false);
+  
   useEffect(() => {
     const el = skillsRef.current;
     if (!el) return;
+    
+    const animateBars = () => {
+      if (hasAnimatedRef.current) return;
+      hasAnimatedRef.current = true;
+      
+      el.setAttribute('data-revealed', 'true');
+      
+      // Find all skill bars with data-target
+      const bars = el.querySelectorAll('[data-target]');
+      
+      bars.forEach(bar => {
+        const target = parseInt(bar.getAttribute('data-target') || '0', 10);
+        const percentEl = bar.querySelector('span');
+        if (!percentEl) return;
+
+        const duration = 2700; // 2.7 seconds
+        const startTime = performance.now();
+
+        const animate = (currentTime) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const value = Math.round(progress * target);
+          percentEl.textContent = `${value}%`;
+          
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          }
+        };
+        
+        requestAnimationFrame(animate);
+      });
+    };
+
+    const resetBars = () => {
+      hasAnimatedRef.current = false;
+      el.setAttribute('data-revealed', 'false');
+      const bars = el.querySelectorAll('[data-target]');
+      bars.forEach(bar => {
+        const percentEl = bar.querySelector('span');
+        if (percentEl) percentEl.textContent = `0%`;
+      });
+    };
+
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          el.setAttribute('data-revealed', 'true');
-          // animate numeric percentages for each bar
-          const bars = el.querySelectorAll(`.${indexCSS.SkillBar}`);
-          bars.forEach(bar => {
-            const target = parseInt(bar.getAttribute('data-target') || '0', 10);
-            const percentEl = bar.querySelector(`.${indexCSS.SkillPercent}`);
-            if (!percentEl) return;
-
-            // duration should match the CSS transition (900ms) scaled by 3x slower we've set earlier
-            const duration = 900 * 3; // 2700ms
-            const start = performance.now();
-
-            const frame = (now) => {
-              const t = Math.min(1, (now - start) / duration);
-              const value = Math.round(t * target);
-              percentEl.textContent = `${value}%`;
-              if (t < 1) requestAnimationFrame(frame);
-            };
-            requestAnimationFrame(frame);
-          });
+          animateBars();
         } else {
-          el.setAttribute('data-revealed', 'false');
-          // reset numeric displays to 0 when leaving
-          const bars = el.querySelectorAll(`.${indexCSS.SkillBar}`);
-          bars.forEach(bar => {
-            const percentEl = bar.querySelector(`.${indexCSS.SkillPercent}`);
-            if (percentEl) percentEl.textContent = `0%`;
-          });
+          resetBars();
         }
       });
-    }, { threshold: 0.25 });
+    }, { threshold: 0.1 }); // Lower threshold to trigger earlier
 
     obs.observe(el);
     return () => obs.disconnect();
@@ -110,8 +127,40 @@ function Index() {
 
   // footer collapse state removed (toggle button removed)
 
+  // Portfolio websites data
+  const portfolioWebsites = [
+    {
+      id: 1,
+      name: "Liprobakin",
+      url: "https://liprobakin.com",
+      description: "Professional business website with modern design",
+      category: "Business",
+      // Using a screenshot API service for thumbnail
+      thumbnail: "https://api.microlink.io/?url=https://liprobakin.com&screenshot=true&meta=false&embed=screenshot.url"
+    }
+  ];
+
+  // Floating particles animation ref
+  const particlesRef = useRef(null);
+  useEffect(() => {
+    const el = particlesRef.current;
+    if (!el) return;
+    // Create floating particles
+    for (let i = 0; i < 20; i++) {
+      const particle = document.createElement('div');
+      particle.className = indexCSS.particle;
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.animationDelay = `${Math.random() * 5}s`;
+      particle.style.animationDuration = `${8 + Math.random() * 8}s`;
+      el.appendChild(particle);
+    }
+  }, []);
+
   return (
-    <div>
+    <div className={indexCSS.pageWrapper}>
+      {/* Floating Particles Background */}
+      <div ref={particlesRef} className={indexCSS.particlesContainer}></div>
+      
       <div id="Home" className={indexCSS.headerWrapper}>
         <Nav />
 
@@ -248,25 +297,38 @@ function Index() {
           </div>
 
           <div className={indexCSS.Experience_wrapper}>
-            <div className={indexCSS.Experience_card}>
+            <div className={`${indexCSS.Experience_card} ${indexCSS.card_cloud}`}>
+              <div className={indexCSS.cardIcon}><i className="ri-cloud-line"></i></div>
               <h3>Junior Cloud Engineer, CentralSquare Technologies</h3>
-              <p>August 2025 - Present</p>
+              <p className={indexCSS.cardDate}>August 2025 - Present</p>
               <ul>
                 <li>- Designing secure, scalable RESTful APIs for VPN workflows.</li>
                 <li>- Architecting cloud storage using Amazon S3, schema less and relational databases.</li>
                 <li>- Building portal features like user access controls and role based permissions.</li>
                 <li>- Developing with Visual Studio Code and ASP.NET, integrating CI/CD pipelines and unit testing frameworks.</li>
               </ul>
-              <p><strong>Skills:</strong> ASP.NET · Amazon S3 · Microsoft Visual Studio Code</p>
+              <p className={indexCSS.cardSkills}><strong>Skills:</strong> ASP.NET · Amazon S3 · Microsoft Visual Studio Code</p>
             </div>
-            <div className={indexCSS.Experience_card}>
-              <h3>Videographer, Bluefield State University <GoDeviceCameraVideo /></h3>
-              <p>August 2021 – April 2023</p>
+            <div className={`${indexCSS.Experience_card} ${indexCSS.card_video}`}>
+              <div className={indexCSS.cardIcon}><GoDeviceCameraVideo /></div>
+              {/* Camera frame overlay */}
+              <div className={indexCSS.cameraFrame}></div>
+              {/* Film strip animation */}
+              <div className={indexCSS.filmStrip}></div>
+              <h3>Videographer, Bluefield State University</h3>
+              <p className={indexCSS.cardDate}>August 2021 – April 2023</p>
               <ul><li>-Shot and edited highlight videos and event promos for the athletics department and CIAA conference.</li></ul>
             </div>
-            <div className={indexCSS.Experience_card}>
-              <h3>UI Designer, Marietta College <SiAltiumdesigner /></h3>
-              <p>August 2024 - May 2025</p>
+            <div className={`${indexCSS.Experience_card} ${indexCSS.card_design}`}>
+              <div className={indexCSS.cardIcon}><SiAltiumdesigner /></div>
+              {/* UI Builder elements */}
+              <div className={`${indexCSS.uiElement} ${indexCSS.uiElement1}`}></div>
+              <div className={`${indexCSS.uiElement} ${indexCSS.uiElement2}`}></div>
+              <div className={`${indexCSS.uiElement} ${indexCSS.uiElement3}`}></div>
+              <div className={`${indexCSS.uiElement} ${indexCSS.uiElement4}`}></div>
+              <div className={indexCSS.cursor}></div>
+              <h3>UI Designer, Marietta College</h3>
+              <p className={indexCSS.cardDate}>August 2024 - May 2025</p>
               <ul><li>-Designed a clean and user-friendly web interface for a Washington County government project as part of a senior capstone.</li></ul>
             </div>
           </div>
@@ -276,44 +338,193 @@ function Index() {
      
       <section id="Projects" className={indexCSS.projects_container}>
         <h2 className="SectionTitle">My Projects</h2>
-        <div className={indexCSS.projects}>
-          <div className={indexCSS.project}><img src={projectImg01} alt="" /><div className={indexCSS.project_content}><h3>Website Development</h3><p>Coming soon, CATNETWORK</p></div></div>
-          <div className={indexCSS.project}><img src={projectImg02} alt="" /><div className={indexCSS.project_content}><h3>Software Development</h3><p>Coming soon</p></div></div>
-          <div className={indexCSS.project}><img src={projectImg03} alt="" /><div className={indexCSS.project_content}><h3>Mobile App Development</h3><p>Coming soon</p></div></div>
-          <div className={indexCSS.project}><img src={projectImg04} alt="" /><div className={indexCSS.project_content}><h3>Website Development</h3><p>Coming soon</p></div></div>
+        
+        {/* Website Development Portfolio */}
+        <div className={indexCSS.portfolioSection}>
+          <h3 className={indexCSS.portfolioTitle}>
+            <span className={indexCSS.titleIcon}>🌐</span>
+            Website Development
+          </h3>
+          <p className={indexCSS.portfolioSubtitle}>Live websites I've built for clients</p>
+          
+          <div className={indexCSS.portfolioGrid}>
+            {portfolioWebsites.map((site) => (
+              <a 
+                key={site.id} 
+                href={site.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={indexCSS.portfolioCard}
+              >
+                <div className={indexCSS.browserFrame}>
+                  <div className={indexCSS.browserBar}>
+                    <span className={indexCSS.browserDot}></span>
+                    <span className={indexCSS.browserDot}></span>
+                    <span className={indexCSS.browserDot}></span>
+                    <span className={indexCSS.browserUrl}>{site.url.replace('https://', '')}</span>
+                  </div>
+                  <div className={indexCSS.screenshotContainer}>
+                    <img 
+                      src={site.thumbnail} 
+                      alt={`${site.name} website preview`}
+                      loading="lazy"
+                      className={indexCSS.screenshotImg}
+                    />
+                    <div className={indexCSS.screenshotOverlay}>
+                      <span className={indexCSS.visitBtn}>Visit Site →</span>
+                    </div>
+                  </div>
+                </div>
+                <div className={indexCSS.portfolioInfo}>
+                  <span className={indexCSS.portfolioCategory}>{site.category}</span>
+                  <h4>{site.name}</h4>
+                  <p>{site.description}</p>
+                </div>
+              </a>
+            ))}
+            
+            {/* Coming Soon Placeholder */}
+            <div className={indexCSS.comingSoonCard}>
+              <div className={indexCSS.comingSoonIcon}>+</div>
+              <h4>More Coming Soon</h4>
+              <p>New projects in development</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Other Projects */}
+        <div className={indexCSS.otherProjects}>
+          <div className={indexCSS.projects}>
+            <div className={indexCSS.project}><img src={projectImg02} alt="" /><div className={indexCSS.project_content}><h3>Software Development</h3><p>Coming soon</p></div></div>
+            <div className={indexCSS.project}><img src={projectImg03} alt="" /><div className={indexCSS.project_content}><h3>Mobile App Development</h3><p>Coming soon</p></div></div>
+          </div>
         </div>
       </section>
 
-      {/* --- CONTACT FORM --- */}
+      {/* --- SPOOKY CONTACT FORM --- */}
       <section id="contact" className={indexCSS.contact_wrapper}>
-        <h3 className="SectionTitle">Contact Me</h3>
-        <div className={indexCSS.contact}>
-          <div className={indexCSS.contact_form}>
-            <h4>Send a Message</h4>
-            <form onSubmit={sendEmail}>
-              <div className={indexCSS.input_wrapper}>
-                <input type="text" name="first_name" placeholder="First Name" required />
-                <input type="text" name="last_name" placeholder="Last Name" required />
+        <h3 className="SectionTitle">Summon Me</h3>
+        
+        <div className={indexCSS.contactContainer}>
+          {/* Floating orbs */}
+          <div className={indexCSS.orbFloat1}></div>
+          <div className={indexCSS.orbFloat2}></div>
+          <div className={indexCSS.orbFloat3}></div>
+          
+          {/* Mystical lines */}
+          <div className={indexCSS.mysticLine1}></div>
+          <div className={indexCSS.mysticLine2}></div>
+          
+          <div className={indexCSS.contactCard}>
+            {/* Glowing border effect */}
+            <div className={indexCSS.cardGlow}></div>
+            
+            <div className={indexCSS.contactHeader}>
+              <h4>Get In Touch</h4>
+              <p className={indexCSS.contactSubtitle}>Have a project in mind? Let's work together.</p>
+            </div>
+            
+            <form onSubmit={sendEmail} className={indexCSS.contactForm}>
+              <div className={indexCSS.inputRow}>
+                <div className={indexCSS.inputGroup}>
+                  <label>First Name</label>
+                  <input type="text" name="first_name" required placeholder="John" />
+                  <span className={indexCSS.inputLine}></span>
+                </div>
+                <div className={indexCSS.inputGroup}>
+                  <label>Last Name</label>
+                  <input type="text" name="last_name" required placeholder="Doe" />
+                  <span className={indexCSS.inputLine}></span>
+                </div>
               </div>
-              <div className={indexCSS.input_wrapper}>
-                <input type="email" name="email" placeholder="Email" required />
-                <input type="text" name="phone" placeholder="Enter phone" />
+              
+              <div className={indexCSS.inputRow}>
+                <div className={indexCSS.inputGroup}>
+                  <label>Email Address</label>
+                  <input type="email" name="email" required placeholder="john@example.com" />
+                  <span className={indexCSS.inputLine}></span>
+                </div>
+                <div className={indexCSS.inputGroup}>
+                  <label>Phone (Optional)</label>
+                  <input type="text" name="phone" placeholder="+1 (555) 000-0000" />
+                  <span className={indexCSS.inputLine}></span>
+                </div>
               </div>
-              <textarea name="message" placeholder="Message" required></textarea>
-              <button type="submit">Submit</button>
+              
+              <div className={indexCSS.inputGroup + ' ' + indexCSS.textareaGroup}>
+                <label>Your Message</label>
+                <textarea name="message" required placeholder="Tell me about your project..." rows="5"></textarea>
+                <span className={indexCSS.inputLine}></span>
+              </div>
+              
+              <button type="submit" className={indexCSS.submitBtn}>
+                <span className={indexCSS.btnText}>Send Message</span>
+                <span className={indexCSS.btnIcon}>
+                  <i className="ri-send-plane-fill"></i>
+                </span>
+              </button>
             </form>
           </div>
-
-          <div className={indexCSS.contact_details}>
-            <h4>Contact Info</h4>
-            <div className={indexCSS.info_wrapper}><i className="ri-phone-line"></i><span>+1(205)218-9027</span></div>
-            <div className={indexCSS.info_wrapper}><i className="ri-mail-line"></i><span>babulandry4@gmail.com</span></div>
-            <div className={indexCSS.social}>
-             {/* <i className="ri-instagram-line"></i>
-              <i className="ri-facebook-line"></i>
-              <i className="ri-twitter-x-line"></i>
-              <i className="ri-youtube-line"></i> */}
+          
+          {/* Map Section */}
+          <div className={indexCSS.mapSection}>
+            <div className={indexCSS.mapContainer}>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224444.95855577!2d-81.5780483!3d28.4811165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e773d8fecdbc77%3A0xac3b2063ca5bf9e!2sOrlando%2C%20FL!5e0!3m2!1sen!2sus!4v1706140000000!5m2!1sen!2sus"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Orlando, Florida Location"
+              ></iframe>
+              <div className={indexCSS.mapOverlay}></div>
             </div>
+          </div>
+          
+          <div className={indexCSS.contactInfo}>
+            <div className={indexCSS.infoCard}>
+              <div className={indexCSS.infoIcon}>
+                <i className="ri-map-pin-line"></i>
+              </div>
+              <div className={indexCSS.infoText}>
+                <h5>Location</h5>
+                <p>Orlando, Florida</p>
+              </div>
+            </div>
+            
+            <div className={indexCSS.infoCard}>
+              <div className={indexCSS.infoIcon}>
+                <i className="ri-phone-line"></i>
+              </div>
+              <div className={indexCSS.infoText}>
+                <h5>Phone</h5>
+                <p>+1 (205) 218-9027</p>
+              </div>
+            </div>
+            
+            <div className={indexCSS.infoCard}>
+              <div className={indexCSS.infoIcon}>
+                <i className="ri-mail-line"></i>
+              </div>
+              <div className={indexCSS.infoText}>
+                <h5>Email</h5>
+                <p>babulandry4@gmail.com</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className={indexCSS.socialLinks}>
+            <a href="https://www.linkedin.com/in/landry-palata-3436a031a/" target="_blank" rel="noopener noreferrer" className={indexCSS.socialLink}>
+              <i className="ri-linkedin-fill"></i>
+            </a>
+            <a href="https://www.instagram.com/landry_palata/" target="_blank" rel="noopener noreferrer" className={indexCSS.socialLink}>
+              <i className="ri-instagram-fill"></i>
+            </a>
+            <a href="mailto:babulandry4@gmail.com" className={indexCSS.socialLink}>
+              <i className="ri-mail-fill"></i>
+            </a>
           </div>
         </div>
       </section>
