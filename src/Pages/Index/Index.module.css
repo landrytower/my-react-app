@@ -529,7 +529,35 @@ body {
     .heroIntro { padding: 20px; }
     .heroTitle { font-size: 32px; }
     .heroPunch { max-width: 100%; }
-    .heroCard { width: min(320px, 100%); }
+    .heroCard {
+        width: min(340px, 100%);
+        aspect-ratio: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 18px 16px 16px;
+    }
+
+    .heroCard::before,
+    .heroCard::after {
+        inset: 14px;
+    }
+
+    .portrait {
+        width: 100%;
+        max-width: 260px;
+        transform: translateY(0);
+        margin-top: 8px;
+    }
+
+    .skillBadges {
+        position: relative;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        margin-top: 14px;
+    }
 }
 
 
