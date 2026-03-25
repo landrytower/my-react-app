@@ -302,71 +302,158 @@ body {
 
 .heroCard {
     position: relative;
-    width: 420px;
-    height: 420px;
-    border-radius: 20px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-    border: 1px solid rgba(255,255,255,0.05);
+    width: min(420px, 100%);
+    aspect-ratio: 1 / 1;
+    height: auto;
+    border-radius: 22px;
+    background:
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    border: 1px solid rgba(212,175,55,0.22);
+    box-shadow:
+        0 26px 80px rgba(0,0,0,0.55),
+        inset 0 0 0 1px rgba(0,0,0,0.35);
     display: flex;
-    flex-direction: column; /* stack portrait then badges */
     align-items: center;
     justify-content: center;
-    overflow: visible;
+    padding: 18px 18px 20px;
+    overflow: hidden;
+    transform: translateZ(0);
+}
+
+/* Retro bezel + CRT screen */
+.heroCard::before {
+    content: '';
+    position: absolute;
+    inset: 14px 14px 68px 14px;
+    border-radius: 16px;
+    background:
+        radial-gradient(120% 110% at 40% 30%, rgba(212,175,55,0.12), rgba(0,0,0,0) 55%),
+        linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.35));
+    box-shadow:
+        inset 0 0 0 2px rgba(255,255,255,0.06),
+        inset 0 0 30px rgba(212,175,55,0.10);
+    z-index: 1;
+}
+
+/* Scanlines + subtle flicker */
+.heroCard::after {
+    content: '';
+    position: absolute;
+    inset: 14px 14px 68px 14px;
+    border-radius: 16px;
+    background:
+        repeating-linear-gradient(
+            180deg,
+            rgba(255,255,255,0.06) 0px,
+            rgba(255,255,255,0.06) 1px,
+            rgba(0,0,0,0.00) 2px,
+            rgba(0,0,0,0.00) 4px
+        ),
+        linear-gradient(
+            180deg,
+            rgba(245,230,163,0.06),
+            rgba(0,0,0,0)
+        );
+    opacity: 0.55;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 3;
+    animation: crtFlicker 5.5s ease-in-out infinite;
+}
+
+@keyframes crtFlicker {
+    0%, 100% { opacity: 0.52; }
+    45% { opacity: 0.58; }
+    50% { opacity: 0.50; }
+    55% { opacity: 0.60; }
 }
 
 .accentBlob {
     position: absolute;
-    right: -60px;
-    top: -40px;
-    width: 220px;
-    height: 220px;
-    background: radial-gradient(circle at 30% 30%, rgba(131,58,180,0.9), rgba(58,123,213,0.7));
-    filter: blur(28px);
-    transform: rotate(12deg);
-    z-index: 1;
+    left: 18px;
+    top: 18px;
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(245,230,163,0.95), rgba(212,175,55,0.2));
+    box-shadow:
+        0 0 0 3px rgba(212,175,55,0.14),
+        0 0 18px rgba(212,175,55,0.35);
+    filter: none;
+    z-index: 4;
+    animation: statusPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.12); opacity: 1; }
 }
 
 .portrait {
-    width: 260px;
-    height: 260px;
+    width: min(290px, 78%);
+    height: auto;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
-    border-radius: 50%;
-    box-shadow: 0 14px 40px rgba(0,0,0,0.45);
+    border-radius: 16px;
+    box-shadow:
+        0 14px 40px rgba(0,0,0,0.50),
+        inset 0 0 0 1px rgba(255,255,255,0.06);
+    filter: saturate(1.08) contrast(1.06);
     position: relative;
     z-index: 2;
+    transform: translateY(-8px);
 }
 
 .skillBadges {
-    /* place naturally below the portrait when heroCard is column layout */
-    position: relative;
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
-    flex-wrap: wrap; /* allow wrapping into multiple lines */
     align-items: center;
-    z-index: 3;
-    justify-content: center; /* center badges under the portrait */
-    max-width: 380px; /* keep badges within the card */
-    padding: 6px 10px 0 10px;
-    margin-top: 12px; /* spacing below portrait */
-    gap: 6px;
-    /* allow up to two rows naturally */
-    max-height: none;
+    justify-content: center;
+    z-index: 5;
+    padding: 18px 12px 10px 12px;
+    border-radius: 18px;
+    background: rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.08);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+    backdrop-filter: blur(8px) saturate(120%);
 }
 
-/* loading bar behind badges (initially zero width, then fills) */
+/* Mario-kart inspired "boost" meter behind badges */
 .skillBadges::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 8px;
+    left: 12px;
+    right: 12px;
+    top: 10px;
+    height: 10px;
     width: 0%;
     border-radius: 999px;
-    background: linear-gradient(90deg, rgba(212,175,55,0.95), rgba(184,134,11,0.9));
-    /* slower fill */
+    background: linear-gradient(90deg, rgba(212,175,55,0.95), rgba(245,230,163,0.85));
     transition: width 2200ms cubic-bezier(.2,.8,.2,1);
-    z-index: 1; /* behind badges (badges have z-index 3) */
+    z-index: 1;
+}
+
+.skillBadges::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    top: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(255,255,255,0.18) 0 12px,
+        rgba(0,0,0,0.25) 12px 24px
+    );
+    opacity: 0.35;
+    z-index: 2;
+    pointer-events: none;
 }
 
 .skillBadges.revealed::before,
@@ -375,12 +462,15 @@ body {
 }
 
 .badge {
-    background: rgba(0,0,0,0.35);
-    color: #fff;
-    padding: 4px 8px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55));
+    color: rgba(255,255,255,0.92);
+    padding: 6px 10px;
     border-radius: 10px;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 11px;
+    letter-spacing: 0.4px;
+    border: 1px solid rgba(212,175,55,0.20);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
     white-space: nowrap;
 }
 
@@ -416,8 +506,8 @@ body {
 
 /* small screens: make smaller badges and tighter spacing */
 @media screen and (max-width:600px) {
-    .skillBadges { gap:6px; bottom:12px; left:12px; right:12px; }
-    .badge { padding:5px 8px; font-size:11px; }
+    .skillBadges { gap: 6px; left: 12px; right: 12px; bottom: 12px; padding: 16px 10px 10px 10px; }
+    .badge { padding: 6px 10px; font-size: 11px; }
 }
 
     /* on smaller screens, stack social icons normally under the intro */
@@ -432,16 +522,14 @@ body {
 @media screen and (max-width:1100px) {
     .heroGrid { grid-template-columns: 1fr; }
     .heroRight { justify-content:center; margin-top: 28px; }
-    .heroCard { width: 320px; height: 320px; }
-    .portrait { width: 220px; height: 220px; }
+    .heroCard { width: min(340px, 100%); }
 }
 
 @media screen and (max-width:600px) {
     .heroIntro { padding: 20px; }
     .heroTitle { font-size: 32px; }
     .heroPunch { max-width: 100%; }
-    .heroCard { width: 260px; height: 260px; }
-    .portrait { width: 180px; height: 180px; }
+    .heroCard { width: min(320px, 100%); }
 }
 
 
@@ -915,6 +1003,146 @@ body {
 /* ============================================= */
 .card_cloud {
     background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%) !important;
+}
+
+/* Subtle animated photo + grid backdrop for the cloud card */
+.cloudGridBackdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.cloudGridBackdrop::before {
+    content: '';
+    position: absolute;
+    inset: -10%;
+    background-image: var(--cloud-bg);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.10;
+    filter: saturate(1.15) contrast(1.05) blur(1.6px);
+    transform: scale(1.06);
+    will-change: transform, opacity;
+    animation: cloudBgDrift 18s ease-in-out infinite, cloudBgBreath 6.5s ease-in-out infinite;
+}
+
+.cloudGridBackdrop::after {
+    content: '';
+    position: absolute;
+    inset: -35%;
+    background-image:
+        repeating-linear-gradient(0deg, rgba(212,175,55,0.06) 0 1px, transparent 1px 44px),
+        repeating-linear-gradient(90deg, rgba(212,175,55,0.05) 0 1px, transparent 1px 44px),
+        repeating-linear-gradient(0deg, rgba(212,175,55,0.07) 0 1px, transparent 1px 176px),
+        repeating-linear-gradient(90deg, rgba(212,175,55,0.06) 0 1px, transparent 1px 176px);
+    opacity: 0.30;
+    transform: translate3d(0,0,0);
+    animation: cloudGridSlide 8s linear infinite, cloudGridPulse 4.5s ease-in-out infinite;
+}
+
+@keyframes cloudGridSlide {
+    0% {
+        background-position: 0 0, 0 0, 0 0, 0 0;
+    }
+    100% {
+        background-position: 0 220px, 220px 0, 0 880px, 880px 0;
+    }
+}
+
+@keyframes cloudGridPulse {
+    0%, 100% { opacity: 0.26; }
+    50% { opacity: 0.32; }
+}
+
+@keyframes cloudBgDrift {
+    0%, 100% {
+        transform: scale(1.06) translate3d(0, 0, 0);
+    }
+    50% {
+        transform: scale(1.10) translate3d(-10px, -6px, 0);
+    }
+}
+
+@keyframes cloudBgBreath {
+    0%, 100% { opacity: 0.095; }
+    50% { opacity: 0.11; }
+}
+
+/* Subtle photo backdrop for the videographer card (BSU) */
+.videoPhotoBackdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.videoPhotoBackdrop::before {
+    content: '';
+    position: absolute;
+    inset: -12%;
+    background-image: var(--video-bg);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.10;
+    filter: saturate(1.10) contrast(1.03) blur(1.4px);
+    transform: scale(1.06);
+    will-change: transform, opacity;
+    animation: videoBgDrift 22s ease-in-out infinite, videoBgBreath 7s ease-in-out infinite;
+}
+
+@keyframes videoBgDrift {
+    0%, 100% { transform: scale(1.06) translate3d(0, 0, 0); }
+    50% { transform: scale(1.10) translate3d(8px, -10px, 0); }
+}
+
+@keyframes videoBgBreath {
+    0%, 100% { opacity: 0.09; }
+    50% { opacity: 0.11; }
+}
+
+/* Subtle Marietta logo pattern backdrop */
+.designLogoBackdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.designLogoBackdrop::before {
+    content: '';
+    position: absolute;
+    inset: -25%;
+    background-image: var(--design-bg);
+    background-repeat: repeat;
+    background-size: 140px auto;
+    background-position: 0 0;
+    opacity: 0.10;
+    filter: saturate(1.10) contrast(1.05) blur(0.8px);
+    transform: rotate(-8deg) scale(1.10);
+    will-change: transform, opacity, background-position;
+    animation: designLogoDrift 26s ease-in-out infinite, designLogoBreath 8s ease-in-out infinite;
+}
+
+@keyframes designLogoDrift {
+    0%, 100% { background-position: 0 0; }
+    50% { background-position: 120px 80px; }
+}
+
+@keyframes designLogoBreath {
+    0%, 100% { opacity: 0.085; transform: rotate(-8deg) scale(1.08); }
+    50% { opacity: 0.11; transform: rotate(-8deg) scale(1.12); }
+}
+
+/* Ensure cloud card content stays above the backdrop */
+.card_cloud > h3,
+.card_cloud > p,
+.card_cloud > ul {
+    position: relative;
+    z-index: 3;
 }
 
 /* Cloud icons floating in background - Always animated */

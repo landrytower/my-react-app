@@ -12,6 +12,10 @@ import UiUxDesign from './../../assets/UiUx.png';
 import projectImg02 from './../../assets/Dev 2.jpg';
 import projectImg03 from './../../assets/APP.jpg';
 
+import bsuBgImg from './../../assets/bsu.jpg';
+import cstBgImg from './../../assets/CST.jpg';
+import mariettaLogoImg from './../../assets/mc_brand_guide_pioneer_head_logo.png';
+
 import { IoIosRestaurant } from "react-icons/io";
 import { GoDeviceCameraVideo } from "react-icons/go";
 import { SiAltiumdesigner } from "react-icons/si";
@@ -300,6 +304,11 @@ function Index() {
 
           <div className={indexCSS.Experience_wrapper}>
             <div className={`${indexCSS.Experience_card} ${indexCSS.card_cloud}`}>
+              <div
+                className={indexCSS.cloudGridBackdrop}
+                style={{ '--cloud-bg': `url(${cstBgImg})` }}
+                aria-hidden="true"
+              ></div>
               <div className={indexCSS.cardIcon}><i className="ri-cloud-line"></i></div>
               <h3>Junior Cloud Engineer, CentralSquare Technologies</h3>
               <p className={indexCSS.cardDate}>August 2025 - Present</p>
@@ -312,6 +321,11 @@ function Index() {
               <p className={indexCSS.cardSkills}><strong>Skills:</strong> ASP.NET · Amazon S3 · Microsoft Visual Studio Code</p>
             </div>
             <div className={`${indexCSS.Experience_card} ${indexCSS.card_video}`}>
+              <div
+                className={indexCSS.videoPhotoBackdrop}
+                style={{ '--video-bg': `url(${bsuBgImg})` }}
+                aria-hidden="true"
+              ></div>
               <div className={indexCSS.cardIcon}><GoDeviceCameraVideo /></div>
               {/* Camera frame overlay */}
               <div className={indexCSS.cameraFrame}></div>
@@ -322,6 +336,11 @@ function Index() {
               <ul><li>-Shot and edited highlight videos and event promos for the athletics department and CIAA conference.</li></ul>
             </div>
             <div className={`${indexCSS.Experience_card} ${indexCSS.card_design}`}>
+              <div
+                className={indexCSS.designLogoBackdrop}
+                style={{ '--design-bg': `url(${mariettaLogoImg})` }}
+                aria-hidden="true"
+              ></div>
               <div className={indexCSS.cardIcon}><SiAltiumdesigner /></div>
               {/* UI Builder elements */}
               <div className={`${indexCSS.uiElement} ${indexCSS.uiElement1}`}></div>
