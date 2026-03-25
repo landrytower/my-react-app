@@ -3,7 +3,7 @@ import Nav from "../../compoent/Nav/Nav";
 import indexCSS from './../Index/Index.module.css';
 
 import heroImg from './../../assets/ab.jpeg';
-import aboutimage from './../../assets/ab2.jpeg';
+import aboutVideoMp4 from './../../assets/copy_E7FE5B14-08AF-4DAF-9C94-388E24DCB92A.mp4';
 
 import frontend from './../../assets/Frontend.png';
 import Backend from './../../assets/Backend.png';
@@ -216,7 +216,9 @@ function Index() {
         <h2 className="SectionTitle">About Me</h2>
         <div className={indexCSS.about}>
           <div className={indexCSS.aboutImage}>
-            <img src={aboutimage} alt="about" />
+            <video autoPlay muted loop playsInline preload="metadata" aria-label="About me video">
+              <source src={aboutVideoMp4} type="video/mp4" />
+            </video>
           </div>
           <div className={indexCSS.aboutContent}>
             <div className={indexCSS.aboutCard}>

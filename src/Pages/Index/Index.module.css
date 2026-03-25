@@ -617,7 +617,8 @@ body {
     justify-content: center;
 }
 
-.about .aboutImage img{
+.about .aboutImage img,
+.about .aboutImage video{
     height: 500px;
     width: 500px;
 
@@ -717,8 +718,12 @@ body {
 @media screen and (max-width:500px) {
     .about .aboutImage {
         width: 100%;
+        position: sticky;
+        top: 90px;
+        height: 75svh;
     }
-    .about .aboutImage img{
+    .about .aboutImage img,
+    .about .aboutImage video{
         height: 100%;
         width: 100%;
     }
